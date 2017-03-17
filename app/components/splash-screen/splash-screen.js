@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import {
+  Alert,
+  TouchableHighlight,
   StyleSheet,
   Text,
   View
@@ -10,9 +12,18 @@ import {
 class SplashScreen extends Component {
   render() {
     return (
-      <View style={styles.splash}>
-        <Text>Survey This</Text>
-      </View>
+      <TouchableHighlight style={styles.wrapper}
+          onPress={() => Alert.alert(
+            'Alert Title',
+            'Touch detected!!',
+            [
+              {text: 'OK', onPress: () => console.log('OK Pressed!')},
+            ]
+          )}>
+          <View style={styles.splash}>
+            <Text>Survey This</Text>
+          </View>
+      </TouchableHighlight>
     );
   }
 }
@@ -23,6 +34,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'skyblue',
+  },
+  wrapper: {
+    flex: 1,
   }
 });
 
