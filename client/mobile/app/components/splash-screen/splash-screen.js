@@ -9,6 +9,8 @@ import {
   View
 } from 'react-native';
 
+let styles = require('./styles');
+
 class SplashScreen extends Component {
   render() {
     return (
@@ -27,17 +29,5 @@ class SplashScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  splash: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'skyblue',
-  },
-  wrapper: {
-    flex: 1,
-  }
-});
 
 module.exports = SplashScreen;
