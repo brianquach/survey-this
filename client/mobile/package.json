@@ -7,7 +7,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "express": "^4.15.2",
     "react": "15.4.2",
     "react-native": "^0.42.2",
     "redux": "^3.6.0"
