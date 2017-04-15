@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import {
+  StyleSheet
+} from 'react-native';
 
 const styles = StyleSheet.create({
   splash: {
@@ -8,9 +9,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'skyblue',
   },
-  wrapper: {
-    flex: 1,
-  }
 });
 
 module.exports = styles;

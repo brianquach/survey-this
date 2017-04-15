@@ -2,30 +2,39 @@
 
 import React, { Component } from 'react';
 import {
-  Alert,
-  TouchableHighlight,
-  StyleSheet,
   Text,
-  View
+  View,
+  StyleSheet,
+  Animated,
 } from 'react-native';
-
-let styles = require('./styles');
+import styles from './styles';
 
 class SplashScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fadeAnim: new Animated.Value(0),
+    };
+  }
+
+  componentDidMount() {
+    Animated.timing(
+      this.state.fadeAnim,
+      {
+        toValue: 1,
+      }
+    ).start();
+  }
+
   render() {
     return (
-      <TouchableHighlight style={styles.wrapper}
-          onPress={() => Alert.alert(
-            'Alert Title',
-            'Touch detected!!',
-            [
-              {text: 'OK', onPress: () => console.log('OK Pressed!')},
-            ]
-          )}>
-          <View style={styles.splash}>
-            <Text>Survey This</Text>
-          </View>
-      </TouchableHighlight>
+      <Animated.View style={[
+        styles.splash,
+        { opacity: this.state.fadeAnim }
+      ]}>
+        <Text>Survey This</Text>
+      </Animated.View>
     );
   }
 }
