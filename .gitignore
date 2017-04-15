@@ -51,3 +51,9 @@ buck-out/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
+
+# Google Services Android Credentials
+google-services.json
+
+# Google Services Ios credentials
+googleservice-info.plist
