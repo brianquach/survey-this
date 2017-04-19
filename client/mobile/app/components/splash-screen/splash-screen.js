@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  StyleSheet,
   Animated,
 } from 'react-native';
 import styles from './styles';
@@ -15,6 +14,7 @@ class SplashScreen extends Component {
 
     this.state = {
       fadeAnim: new Animated.Value(0),
+      hide: false
     };
   }
 
@@ -23,19 +23,24 @@ class SplashScreen extends Component {
       this.state.fadeAnim,
       {
         toValue: 1,
+        duration: 3000,
       }
-    ).start();
+    ).start(
+      () => {
+        this.setState({ hide: true })
+      });
   }
 
   render() {
-    return (
+    let animatedView = (!this.state.hide) ? (
       <Animated.View style={[
         styles.splash,
         { opacity: this.state.fadeAnim }
       ]}>
         <Text>Survey This</Text>
       </Animated.View>
-    );
+    ) : null;
+    return animatedView;
   }
 }
 
