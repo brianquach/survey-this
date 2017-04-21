@@ -5,7 +5,7 @@ import {
   GoogleSignin,
   GoogleSigninButton
 } from 'react-native-google-signin';
-import config from '../../config/config.json'
+import config from '../../../../config/config.json'
 
 
 export default class GoogleSignIn extends Component {
@@ -32,7 +32,9 @@ export default class GoogleSignIn extends Component {
       GoogleSignin.currentUserAsync().then((user) => {
         console.log('USER', user);
         this.setState({ user: user });
-        this.props.onSignInComplete();
+        if (user !== null) {
+            this.props.onSignInComplete();
+        }
       });
     }
   }

@@ -23,7 +23,6 @@ export default class FacebookSignIn extends Component {
     if (this.props.doSignOut) {
       this.signOut();
     } else {
-      console.log('OKAY');
       AccessToken.getCurrentAccessToken().then(
         (data) => {
           if (data) {

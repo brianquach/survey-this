@@ -5,18 +5,62 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator,
+  TouchableHighlight,
 } from 'react-native';
-
-let SplashScreen = require('./components/splash-screen/splash-screen');
+import SplashScreen from './components/scenes/splash-screen/splash-screen';
+import SignIn from './components/scenes/signin/signin';
 
 export default class SurveyThisApp extends Component {
+  constructor(props) {
+      super(props);
+
+      this.state = {
+        routes: [
+          {
+            title: 'splash',
+            scene: <SplashScreen />,
+          },
+          {
+            title: 'signin',
+            scene: <SignIn />,
+          },
+        ]
+      }
+
+      this.renderScene = this.renderScene.bind(this);
+  }
+
   render() {
+    const routes = this.state.routes;
     return (
-      <View style={styles.layout}>
-        <SplashScreen />
-      </View>
+      <Navigator
+        initialRoute={ routes[0] }
+        initialRouteStack={ routes }
+        renderScene={ this.renderScene }
+        style={ styles.layout }
+      />
     );
+  }
+
+  renderScene(route, navigator) {
+    switch (route.title) {
+      case 'splash':
+        const login = this.state.routes[1];
+        const renderSceneLogin = () => { navigator.push(login); }
+        return (
+          <SplashScreen
+            onComplete={ renderSceneLogin }
+            />
+        );
+      case 'signin':
+        return (
+          <SignIn />
+        )
+      default:
+        break;
+    }
   }
 }
 
