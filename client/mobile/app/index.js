@@ -13,9 +13,18 @@ let SplashScreen = require('./components/splash-screen/splash-screen');
 export default class SurveyThisApp extends Component {
   render() {
     return (
-      <SplashScreen />
+      <View style={styles.layout}>
+        <SplashScreen />
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  layout: {
+    flex: 1,
+    backgroundColor: 'skyblue',
+  },
+});
 
 AppRegistry.registerComponent('SurveyThis', () => SurveyThisApp);
