@@ -6,6 +6,7 @@ import {
   Button,
 } from 'react-native';
 import GoogleSignIn from '../google-signin/google-signin';
+import FacebookSignIn from '../facebook-signin/facebook-signin';
 
 
 export default class SocialMediaSignin extends Component {
@@ -17,7 +18,7 @@ export default class SocialMediaSignin extends Component {
       doSignOut: false,
     };
 
-    this.signIn = this.signIn.bind(this);
+    this.onSignInComplete = this.onSignInComplete.bind(this);
     this.signOut = this.signOut.bind(this);
     this.onSignOutComplete = this.onSignOutComplete.bind(this);
   }
@@ -28,10 +29,16 @@ export default class SocialMediaSignin extends Component {
     return (
       <View>
         { !isLoggedIn ? (
-          <GoogleSignIn
-            onUserLogin={ this.signIn }
-            onSignOutComplete={ this.onSignOutComplete }
-            doSignOut={ doSignOut } />
+          <View>
+            <GoogleSignIn
+              onSignInComplete={ this.onSignInComplete }
+              onSignOutComplete={ this.onSignOutComplete }
+              doSignOut={ doSignOut } />
+            <FacebookSignIn
+              onSignInComplete={ this.onSignInComplete }
+              onSignOutComplete={ this.onSignOutComplete }
+              doSignOut={ doSignOut } />
+          </View>
         ) : (
           <Button
             title="Sign Out"
@@ -43,8 +50,8 @@ export default class SocialMediaSignin extends Component {
     )
   }
 
-  signIn(isSuccessful) {
-    this.setState({ isLoggedIn: isSuccessful });
+  onSignInComplete() {
+    this.setState({ isLoggedIn: true });
   }
 
   signOut() {

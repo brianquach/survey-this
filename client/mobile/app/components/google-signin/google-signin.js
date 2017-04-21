@@ -2,9 +2,6 @@
 
 import React, { Component } from 'react';
 import {
-  View,
-} from 'react-native';
-import {
   GoogleSignin,
   GoogleSigninButton
 } from 'react-native-google-signin';
@@ -31,12 +28,11 @@ export default class GoogleSignIn extends Component {
   componentDidMount() {
     if (this.props.doSignOut) {
       this.signOut();
-
     } else {
       GoogleSignin.currentUserAsync().then((user) => {
         console.log('USER', user);
         this.setState({ user: user });
-        this.props.onUserLogin((user !== null) ? true : false);
+        this.props.onSignInComplete();
       });
     }
   }
@@ -55,7 +51,7 @@ export default class GoogleSignIn extends Component {
     GoogleSignin.signIn()
       .then((user) => {
         this.setState({ user: user });
-        this.props.onUserLogin((user !== null) ? true : false);
+        this.props.onSignInComplete((user !== null) ? true : false);
       })
       .catch((err) => {
         console.log('WRONG SIGNIN', err);
