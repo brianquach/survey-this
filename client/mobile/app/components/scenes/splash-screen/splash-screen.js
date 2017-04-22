@@ -18,7 +18,6 @@ export default class SplashScreen extends Component {
   }
 
   componentDidMount() {
-    console.log(1, this.props);
     Animated.timing(
       this.state.fadeAnim,
       {
@@ -26,7 +25,6 @@ export default class SplashScreen extends Component {
         duration: 3000,
       }
     ).start(() => {
-      console.log(2, this.props);
       this.props.onComplete();
     });
   }

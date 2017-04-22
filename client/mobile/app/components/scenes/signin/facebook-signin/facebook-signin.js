@@ -8,6 +8,8 @@ const FBSDK = require('react-native-fbsdk');
 const {
   LoginManager,
   AccessToken,
+  GraphRequest,
+  GraphRequestManager,
 } = FBSDK;
 
 
@@ -17,20 +19,15 @@ export default class FacebookSignIn extends Component {
 
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
+    this.getUserInformation = this.getUserInformation.bind(this);
+    this.fbGraphRequestUserInformation = this.fbGraphRequestUserInformation.bind(this);
   }
 
   componentDidMount() {
     if (this.props.doSignOut) {
       this.signOut();
     } else {
-      AccessToken.getCurrentAccessToken().then(
-        (data) => {
-          if (data) {
-            alert(data.accessToken.toString())
-            this.props.onSignInComplete();
-          }
-        }
-      );
+      this.getUserInformation();
     }
   }
 
@@ -43,26 +40,47 @@ export default class FacebookSignIn extends Component {
   }
 
   signIn() {
-    const onSignInComplete = this.props.onSignInComplete;
+    const getUserInformation = this.getUserInformation;
 
-    LoginManager.logInWithReadPermissions(['public_profile']).then(
+    LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
       function(result) {
         if (result.isCancelled) {
           alert('Login was cancelled');
         } else {
-          console.log(result);
-          AccessToken.getCurrentAccessToken().then(
-            (data) => {
-              alert(data.accessToken.toString())
-            }
-          );
-          onSignInComplete(true);
+          getUserInformation();
         }
       },
       function(error) {
         alert('Login failed with error: ' + error);
       }
     );
+  }
+
+  getUserInformation() {
+    AccessToken.getCurrentAccessToken().then(
+      (data) => {
+        if (data) {
+          console.log(data.accessToken.toString());
+          this.fbGraphRequestUserInformation();
+          this.props.onSignInComplete();
+        }
+      }
+    );
+  }
+
+  fbGraphRequestUserInformation() {
+    const infoRequest = new GraphRequest(
+      '/me?fields=id,name,email',
+      null,
+      (error: ?Object, result: ?Object) => {
+        if (error) {
+          console.log('Error fetching data: ' + error.toString());
+        } else {
+          console.log('Success fetching data: ' + result, result.data, result.email);
+        }
+      },
+    );
+    new GraphRequestManager().addRequest(infoRequest).start();
   }
 
   signOut() {

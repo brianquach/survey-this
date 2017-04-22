@@ -50,12 +50,12 @@ export default class SignIn extends Component {
     )
   }
 
-  onSignInComplete() {
-    this.setState({ isLoggedIn: true });
-  }
-
   signOut() {
     this.setState({ doSignOut: true, isLoggedIn: false });
+  }
+  
+  onSignInComplete() {
+    this.setState({ isLoggedIn: true });
   }
 
   onSignOutComplete() {

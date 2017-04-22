@@ -30,8 +30,8 @@ export default class GoogleSignIn extends Component {
       this.signOut();
     } else {
       GoogleSignin.currentUserAsync().then((user) => {
-        console.log('USER', user);
         this.setState({ user: user });
+        console.log('USER', user);
         if (user !== null) {
             this.props.onSignInComplete();
         }
@@ -52,6 +52,7 @@ export default class GoogleSignIn extends Component {
   signIn() {
     GoogleSignin.signIn()
       .then((user) => {
+        console.log('USER', user);
         this.setState({ user: user });
         this.props.onSignInComplete((user !== null) ? true : false);
       })
