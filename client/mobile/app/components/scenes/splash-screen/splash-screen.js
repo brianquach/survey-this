@@ -22,7 +22,7 @@ export default class SplashScreen extends Component {
       this.state.fadeAnim,
       {
         toValue: 1,
-        duration: 3000,
+        duration: 2000,
       }
     ).start(() => {
       this.props.onComplete();
