@@ -53,7 +53,7 @@ export default class SignIn extends Component {
   signOut() {
     this.setState({ doSignOut: true, isLoggedIn: false });
   }
-  
+
   onSignInComplete() {
     this.setState({ isLoggedIn: true });
   }

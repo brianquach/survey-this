@@ -12,30 +12,15 @@ export default class GoogleSignIn extends Component {
   constructor(props) {
     super(props);
 
-    this.iosClientId = config.iosClientId;
-    this.state = {
-      user: null,
-    };
-
-    GoogleSignin.configure({
-      iosClientId: this.iosClientId,
-    });
-
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
   }
 
   componentDidMount() {
+    this._setupGoogleSignin();
+
     if (this.props.doSignOut) {
       this.signOut();
-    } else {
-      GoogleSignin.currentUserAsync().then((user) => {
-        this.setState({ user: user });
-        console.log('USER', user);
-        if (user !== null) {
-            this.props.onSignInComplete();
-        }
-      });
     }
   }
 
@@ -52,9 +37,7 @@ export default class GoogleSignIn extends Component {
   signIn() {
     GoogleSignin.signIn()
       .then((user) => {
-        console.log('USER', user);
-        this.setState({ user: user });
-        this.props.onSignInComplete((user !== null) ? true : false);
+        this.props.onSignInComplete();
       })
       .catch((err) => {
         console.log('WRONG SIGNIN', err);
@@ -63,14 +46,34 @@ export default class GoogleSignIn extends Component {
 
   signOut() {
     const user = GoogleSignin.currentUser();
+
     if (user !== null) {
       GoogleSignin.signOut()
-        .then(() => {
+        .then((d) => {
           this.props.onSignOutComplete();
         })
         .catch((err) => {
-
+          console.log('ERR', err);
         });
+    }
+  }
+
+  async _setupGoogleSignin() {
+    try {
+
+      await GoogleSignin.configure({
+        iosClientId: config.iosClientId,
+        offlineAccess: false
+      });
+
+      const user = await GoogleSignin.currentUserAsync();
+      if (user !== null) {
+          this.props.onSignInComplete();
+      }
+      console.log('SETUP', user);
+    }
+    catch(err) {
+      console.log("Play services error", err.code, err.message);
     }
   }
 }
