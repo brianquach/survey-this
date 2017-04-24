@@ -2,15 +2,14 @@
 
 import React, { Component } from 'react';
 import {
-  Button
+  Button,
 } from 'react-native';
-const FBSDK = require('react-native-fbsdk');
-const {
+import {
   LoginManager,
   AccessToken,
   GraphRequest,
   GraphRequestManager,
-} = FBSDK;
+} from 'react-native-fbsdk';
 
 
 export default class FacebookSignIn extends Component {
