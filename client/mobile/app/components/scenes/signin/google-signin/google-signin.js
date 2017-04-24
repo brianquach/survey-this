@@ -5,12 +5,14 @@ import {
   GoogleSignin,
   GoogleSigninButton
 } from 'react-native-google-signin';
-import config from '../../../../config/config.json'
+import { CONFIG } from '../../../../index'
 
 
 export default class GoogleSignIn extends Component {
   constructor(props) {
     super(props);
+
+    console.log('CONFIG', CONFIG);
 
     this.signIn = this.signIn.bind(this);
     this.signOut = this.signOut.bind(this);
@@ -62,7 +64,7 @@ export default class GoogleSignIn extends Component {
     try {
 
       await GoogleSignin.configure({
-        iosClientId: config.iosClientId,
+        iosClientId: CONFIG.iosClientId,
         offlineAccess: false
       });
 
@@ -70,7 +72,6 @@ export default class GoogleSignIn extends Component {
       if (user !== null) {
           this.props.onSignInComplete();
       }
-      console.log('SETUP', user);
     }
     catch(err) {
       console.log("Play services error", err.code, err.message);
