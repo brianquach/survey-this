@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import SplashScreen from './components/scenes/splash-screen/splash-screen';
 import SignIn from './components/scenes/signin/signin';
+import CONFIG from './config/config.json'
+
 
 export default class SurveyThisApp extends Component {
   constructor(props) {
@@ -70,5 +72,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'skyblue',
   },
 });
+
+module.exports.CONFIG = CONFIG;
 
 AppRegistry.registerComponent('SurveyThis', () => SurveyThisApp);
