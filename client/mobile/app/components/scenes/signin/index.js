@@ -5,8 +5,8 @@ import {
   View,
   Button,
 } from 'react-native';
-import GoogleSignIn from './google-signin/google-signin';
-import FacebookSignIn from './facebook-signin/facebook-signin';
+import GoogleSignIn from './google-signin';
+import FacebookSignIn from './facebook-signin';
 
 
 export default class SignIn extends Component {
