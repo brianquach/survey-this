@@ -23,6 +23,11 @@ export default class GoogleSignIn extends Component {
 
     if (this.props.doSignOut) {
       this.signOut();
+    } else {
+      const user = await GoogleSignin.currentUserAsync();
+      if (user !== null) {
+          this.props.onSignInComplete();
+      }
     }
   }
 
@@ -62,16 +67,10 @@ export default class GoogleSignIn extends Component {
 
   async _setupGoogleSignin() {
     try {
-
       await GoogleSignin.configure({
         iosClientId: CONFIG.iosClientId,
         offlineAccess: false
       });
-
-      const user = await GoogleSignin.currentUserAsync();
-      if (user !== null) {
-          this.props.onSignInComplete();
-      }
     }
     catch(err) {
       console.log("Play services error", err.code, err.message);
