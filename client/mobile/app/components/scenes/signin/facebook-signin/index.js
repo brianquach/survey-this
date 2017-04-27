@@ -84,5 +84,6 @@ export default class FacebookSignIn extends Component {
 
   signOut() {
     LoginManager.logOut();
+    this.props.onSignOutComplete();
   }
 }
