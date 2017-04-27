@@ -5,18 +5,20 @@ import {
   View,
   Button,
 } from 'react-native';
+import { connect } from 'react-redux'
 import GoogleSignIn from './google-signin';
 import FacebookSignIn from './facebook-signin';
 
 
-export default class SignIn extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isLoggedIn: false,
       doSignOut: false,
     };
+
+    this.dispatch = this.props.dispatch;
 
     this.onSignInComplete = this.onSignInComplete.bind(this);
     this.signOut = this.signOut.bind(this);
@@ -24,7 +26,7 @@ export default class SignIn extends Component {
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
+    const isLoggedIn = this.props.isLoggedIn;
     const doSignOut = this.state.doSignOut;
     return (
       <View>
@@ -51,14 +53,23 @@ export default class SignIn extends Component {
   }
 
   signOut() {
-    this.setState({ doSignOut: true, isLoggedIn: false });
+    this.dispatch({ type: 'SIGNOUT' });
+    this.setState({ doSignOut: true });
   }
 
   onSignInComplete() {
-    this.setState({ isLoggedIn: true });
+    this.dispatch({ type: 'SIGNIN' });
   }
 
   onSignOutComplete() {
     this.setState({ doSignOut: false });
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoggedIn: state.signin
+  }
+}
+
+export default connect(mapStateToProps, null)(SignIn);
