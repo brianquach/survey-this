@@ -5,29 +5,30 @@ import {
   GoogleSignin,
   GoogleSigninButton
 } from 'react-native-google-signin';
-import { CONFIG } from '../../../../index'
+import { connect } from 'react-redux';
+import { CONFIG } from '../../../../index';
 
 
-export default class GoogleSignIn extends Component {
+class GoogleSignIn extends Component {
   constructor(props) {
     super(props);
 
     console.log('CONFIG', CONFIG);
 
+    this.dispatch = this.props.dispatch;
     this.signIn = this.signIn.bind(this);
-    this.signOut = this.signOut.bind(this);
   }
 
   componentDidMount() {
     this._setupGoogleSignin();
 
-    if (this.props.doSignOut) {
-      this.signOut();
-    } else {
-      const user = await GoogleSignin.currentUserAsync();
+    if (this.props.isLoggedIn) {
+      const user = GoogleSignin.currentUser();
       if (user !== null) {
-          this.props.onSignInComplete();
+          this.dispatch({ type: 'SIGNIN' });
       }
+    } else {
+      this.signOut();
     }
   }
 
@@ -44,7 +45,7 @@ export default class GoogleSignIn extends Component {
   signIn() {
     GoogleSignin.signIn()
       .then((user) => {
-        this.props.onSignInComplete();
+        this.dispatch({ type: 'SIGNIN' });
       })
       .catch((err) => {
         console.log('WRONG SIGNIN', err);
@@ -53,11 +54,9 @@ export default class GoogleSignIn extends Component {
 
   signOut() {
     const user = GoogleSignin.currentUser();
-
     if (user !== null) {
       GoogleSignin.signOut()
         .then((d) => {
-          this.props.onSignOutComplete();
         })
         .catch((err) => {
           console.log('ERR', err);
@@ -77,3 +76,11 @@ export default class GoogleSignIn extends Component {
     }
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoggedIn: state.signin
+  }
+};
+
+export default connect(mapStateToProps, null)(GoogleSignIn);

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import {
   Button,
 } from 'react-native';
+import { connect } from 'react-redux';
 import {
   LoginManager,
   AccessToken,
@@ -12,21 +13,24 @@ import {
 } from 'react-native-fbsdk';
 
 
-export default class FacebookSignIn extends Component {
+class FacebookSignIn extends Component {
   constructor(props) {
     super(props);
 
-    this.signIn = this.signIn.bind(this);
-    this.signOut = this.signOut.bind(this);
+    this.dispatch = this.props.dispatch;
     this.getUserInformation = this.getUserInformation.bind(this);
-    this.fbGraphRequestUserInformation = this.fbGraphRequestUserInformation.bind(this);
+    this.signIn = this.signIn.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.doSignOut) {
-      this.signOut();
+    if (this.props.isLoggedIn) {
+      this.getUserInformation().then(
+        () => {
+          this.dispatch({ type: 'SIGNIN' });
+        }
+      );
     } else {
-      this.getUserInformation();
+      this.signOut();
     }
   }
 
@@ -40,13 +44,18 @@ export default class FacebookSignIn extends Component {
 
   signIn() {
     const getUserInformation = this.getUserInformation;
+    const dispatch = this.dispatch;
 
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
       function(result) {
         if (result.isCancelled) {
           alert('Login was cancelled');
         } else {
-          getUserInformation();
+          getUserInformation().then(
+            () => {
+              dispatch({ type: 'SIGNIN' });
+            }
+          );
         }
       },
       function(error) {
@@ -55,16 +64,23 @@ export default class FacebookSignIn extends Component {
     );
   }
 
-  getUserInformation() {
-    AccessToken.getCurrentAccessToken().then(
-      (data) => {
-        if (data) {
-          console.log(data.accessToken.toString());
-          this.fbGraphRequestUserInformation();
-          this.props.onSignInComplete();
+  async getUserInformation() {
+    let r;
+    try {
+      r = await AccessToken.getCurrentAccessToken().then(
+        (data) => {
+          if (data) {
+            console.log(data.accessToken.toString());
+            await this.fbGraphRequestUserInformation();
+            return true;
+          }
+          retrun false;
         }
-      }
-    );
+      );
+    }
+    catch(err) {
+    }
+    return r;
   }
 
   fbGraphRequestUserInformation() {
@@ -84,6 +100,13 @@ export default class FacebookSignIn extends Component {
 
   signOut() {
     LoginManager.logOut();
-    this.props.onSignOutComplete();
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    isLoggedIn: state.signin
+  }
+};
+
+export default connect(mapStateToProps, null)(FacebookSignIn);

@@ -19,10 +19,7 @@ class SignIn extends Component {
     };
 
     this.dispatch = this.props.dispatch;
-
-    this.onSignInComplete = this.onSignInComplete.bind(this);
     this.signOut = this.signOut.bind(this);
-    this.onSignOutComplete = this.onSignOutComplete.bind(this);
   }
 
   render() {
@@ -33,12 +30,8 @@ class SignIn extends Component {
         { !isLoggedIn ? (
           <View>
             <GoogleSignIn
-              onSignInComplete={ this.onSignInComplete }
-              onSignOutComplete={ this.onSignOutComplete }
               doSignOut={ doSignOut } />
             <FacebookSignIn
-              onSignInComplete={ this.onSignInComplete }
-              onSignOutComplete={ this.onSignOutComplete }
               doSignOut={ doSignOut } />
           </View>
         ) : (
@@ -54,15 +47,6 @@ class SignIn extends Component {
 
   signOut() {
     this.dispatch({ type: 'SIGNOUT' });
-    this.setState({ doSignOut: true });
-  }
-
-  onSignInComplete() {
-    this.dispatch({ type: 'SIGNIN' });
-  }
-
-  onSignOutComplete() {
-    this.setState({ doSignOut: false });
   }
 }
 
@@ -70,6 +54,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     isLoggedIn: state.signin
   }
-}
+};
 
 export default connect(mapStateToProps, null)(SignIn);
