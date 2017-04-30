@@ -9,7 +9,7 @@ import appReducers from './reducers'
 import CONFIG from './config/config.json'
 
 
-export default class SurveyThisApp extends Component {
+class SurveyThisApp extends Component {
   constructor(props) {
       super(props);
 
