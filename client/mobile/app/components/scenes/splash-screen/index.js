@@ -24,9 +24,7 @@ export default class SplashScreen extends Component {
         toValue: 1,
         duration: 2000,
       }
-    ).start(() => {
-      this.props.onComplete();
-    });
+    ).start();
   }
 
   render() {
