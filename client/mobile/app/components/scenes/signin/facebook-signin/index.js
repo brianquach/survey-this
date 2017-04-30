@@ -71,10 +71,10 @@ class FacebookSignIn extends Component {
         (data) => {
           if (data) {
             console.log(data.accessToken.toString());
-            await this.fbGraphRequestUserInformation();
+            this.fbGraphRequestUserInformation();
             return true;
           }
-          retrun false;
+          return false;
         }
       );
     }
