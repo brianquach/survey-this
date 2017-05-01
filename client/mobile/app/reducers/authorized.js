@@ -2,7 +2,7 @@ const authorized = (state = false, action) => {
   switch (action.type) {
     case 'SIGNIN':
       return true;
-    case 'SIGNINOUT':
+    case 'SIGNOUT':
       return false;
     default:
       return state;
