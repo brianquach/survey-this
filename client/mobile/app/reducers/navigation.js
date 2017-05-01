@@ -8,7 +8,7 @@ const nav = (state = initialState, action) => {
   let nextState;
   switch (action.type) {
     case 'SIGNIN':
-      nextState = AppNavigator.router.getStateForAction(NavigationActions.back(), state);
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'Dashboard' }), state);
       break;
     case 'SIGNOUT':
       nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'SignIn' }), state);

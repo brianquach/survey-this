@@ -15,7 +15,6 @@ class GoogleSignIn extends Component {
 
     console.log('CONFIG', CONFIG);
 
-    this.dispatch = this.props.dispatch;
     this.signIn = this.signIn.bind(this);
   }
 
@@ -25,7 +24,7 @@ class GoogleSignIn extends Component {
     if (this.props.isLoggedIn) {
       const user = GoogleSignin.currentUser();
       if (user !== null) {
-          this.dispatch({ type: 'SIGNIN' });
+          this.props.onSignInComplete();
       }
     } else {
       this.signOut();
@@ -45,7 +44,7 @@ class GoogleSignIn extends Component {
   signIn() {
     GoogleSignin.signIn()
       .then((user) => {
-        this.dispatch({ type: 'SIGNIN' });
+        this.props.onSignInComplete();
       })
       .catch((err) => {
         console.log('WRONG SIGNIN', err);
@@ -77,10 +76,10 @@ class GoogleSignIn extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.signin
+    isLoggedIn: state.authorized
   }
 };
 
-export default connect(mapStateToProps, null)(GoogleSignIn);
+export default connect(mapStateToProps)(GoogleSignIn);

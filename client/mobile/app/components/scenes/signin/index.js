@@ -1,59 +1,33 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {
-  View,
-  Button,
-} from 'react-native';
+import { View } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux'
 import GoogleSignIn from './google-signin';
 import FacebookSignIn from './facebook-signin';
 
 
 class SignIn extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      doSignOut: false,
-    };
-
-    this.dispatch = this.props.dispatch;
-    this.signOut = this.signOut.bind(this);
-  }
-
   render() {
-    const isLoggedIn = this.props.isLoggedIn;
-    const doSignOut = this.state.doSignOut;
+    const { onSignInComplete } = this.props;
     return (
       <View>
-        { !isLoggedIn ? (
-          <View>
-            <GoogleSignIn
-              doSignOut={ doSignOut } />
-            <FacebookSignIn
-              doSignOut={ doSignOut } />
-          </View>
-        ) : (
-          <Button
-            title="Sign Out"
-            accessibilityLabel="Sign out"
-            onPress={ this.signOut }
-          />
-        )}
+        <GoogleSignIn
+          onSignInComplete={ onSignInComplete } />
+        <FacebookSignIn
+          onSignInComplete={ onSignInComplete } />
       </View>
     )
   }
-
-  signOut() {
-    this.dispatch({ type: 'SIGNOUT' });
-  }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    isLoggedIn: state.signin
-  }
+    onSignInComplete: () => {
+      ownProps.navigation.dispatch({ type: 'SIGNIN' });
+    },
+  };
 };
 
-export default connect(mapStateToProps, null)(SignIn);
+export default connect(null, mapDispatchToProps)(SignIn);

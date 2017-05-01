@@ -10,15 +10,20 @@ import {
 class Dashboard extends Component {
   render() {
     return (
-      <Button
-        title="Create Survey"
-        accessibilityLabel="Start creating your own survey" />
-      <Button
-        title="Run Survey"
-        accessibilityLabel="Run a survey you have created" />
-      <Button
-        text="Analytics"
-        accessibilityLabel="View analytical information of your surveys" />
+      <View>
+        <Button
+          title="Create Survey"
+          accessibilityLabel="Start creating your own survey"
+          onPress={() => { console.log('create'); }} />
+        <Button
+          title="Run Survey"
+          accessibilityLabel="Run a survey you have created"
+          onPress={() => { console.log('run'); }} />
+        <Button
+          title="Analytics"
+          accessibilityLabel="View analytical information of your surveys"
+          onPress={() => { console.log('analytics'); }} />
+      </View>
     );
   }
 }

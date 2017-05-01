@@ -17,7 +17,6 @@ class FacebookSignIn extends Component {
   constructor(props) {
     super(props);
 
-    this.dispatch = this.props.dispatch;
     this.getUserInformation = this.getUserInformation.bind(this);
     this.signIn = this.signIn.bind(this);
   }
@@ -26,7 +25,7 @@ class FacebookSignIn extends Component {
     if (this.props.isLoggedIn) {
       this.getUserInformation().then(
         () => {
-          this.dispatch({ type: 'SIGNIN' });
+          this.props.onSignInComplete();
         }
       );
     } else {
@@ -44,7 +43,7 @@ class FacebookSignIn extends Component {
 
   signIn() {
     const getUserInformation = this.getUserInformation;
-    const dispatch = this.dispatch;
+    const onSignInComplete = this.props.onSignInComplete;
 
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
       function(result) {
@@ -53,7 +52,7 @@ class FacebookSignIn extends Component {
         } else {
           getUserInformation().then(
             () => {
-              dispatch({ type: 'SIGNIN' });
+              onSignInComplete();
             }
           );
         }
@@ -103,10 +102,10 @@ class FacebookSignIn extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    isLoggedIn: state.signin
+    isLoggedIn: state.authorized
   }
 };
 
-export default connect(mapStateToProps, null)(FacebookSignIn);
+export default connect(mapStateToProps)(FacebookSignIn);

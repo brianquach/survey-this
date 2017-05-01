@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import nav from './navigation'
-import signin from './signin'
+import authorized from './authorized'
 
 const appReducers = combineReducers({
+  authorized,
   nav,
-  signin
 });
 
 export default appReducers;
