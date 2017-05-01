@@ -5,10 +5,13 @@ import {
   Button,
   View
 } from 'react-native';
+import { connect } from 'react-redux';
 
 
 class Dashboard extends Component {
   render() {
+    const { dispatch } = this.props;
+
     return (
       <View>
         <Button
@@ -23,9 +26,14 @@ class Dashboard extends Component {
           title="Analytics"
           accessibilityLabel="View analytical information of your surveys"
           onPress={() => { console.log('analytics'); }} />
+        <Button
+          title="Logout"
+          accessibilityLabel="Logout of Survey This app"
+          onPress={() => { dispatch({ type: 'SIGNOUT' }) }} />
       </View>
     );
   }
 }
 
-export default Dashboard;
+
+export default connect()(Dashboard);
