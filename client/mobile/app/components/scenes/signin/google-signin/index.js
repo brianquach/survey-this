@@ -13,22 +13,11 @@ class GoogleSignIn extends Component {
   constructor(props) {
     super(props);
 
-    console.log('CONFIG', CONFIG);
-
     this.signIn = this.signIn.bind(this);
   }
 
   componentDidMount() {
     this._setupGoogleSignin();
-
-    if (this.props.isLoggedIn) {
-      const user = GoogleSignin.currentUser();
-      if (user !== null) {
-          this.props.onSignInComplete();
-      }
-    } else {
-      this.signOut();
-    }
   }
 
   render() {
@@ -44,23 +33,13 @@ class GoogleSignIn extends Component {
   signIn() {
     GoogleSignin.signIn()
       .then((user) => {
+        console.log('what');
         this.props.onSignInComplete();
       })
       .catch((err) => {
         console.log('WRONG SIGNIN', err);
-      });
-  }
-
-  signOut() {
-    const user = GoogleSignin.currentUser();
-    if (user !== null) {
-      GoogleSignin.signOut()
-        .then((d) => {
-        })
-        .catch((err) => {
-          console.log('ERR', err);
-        });
-    }
+      })
+      .done();
   }
 
   async _setupGoogleSignin() {

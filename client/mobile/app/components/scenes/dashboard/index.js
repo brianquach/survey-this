@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-
+import SignOut from './signout';
 
 class Dashboard extends Component {
   render() {
@@ -26,10 +26,7 @@ class Dashboard extends Component {
           title="Analytics"
           accessibilityLabel="View analytical information of your surveys"
           onPress={() => { console.log('analytics'); }} />
-        <Button
-          title="Logout"
-          accessibilityLabel="Logout of Survey This app"
-          onPress={() => { dispatch({ type: 'SIGNOUT' }) }} />
+        <SignOut />
       </View>
     );
   }

@@ -22,13 +22,7 @@ class FacebookSignIn extends Component {
   }
 
   componentDidMount() {
-    if (this.props.isLoggedIn) {
-      this.getUserInformation().then(
-        () => {
-          this.props.onSignInComplete();
-        }
-      );
-    } else {
+    if (!this.props.isLoggedIn) {
       this.signOut();
     }
   }
