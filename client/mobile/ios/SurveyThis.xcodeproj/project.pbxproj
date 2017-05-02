@@ -24,12 +24,15 @@
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		33D8B1E81E6B44C683964ED9 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C16975BEDC1470C8149520E /* libRCTFBSDK.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		6FB7C502F8C4F777F5B679D8 /* Pods_SurveyThis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DAD61C52E508D9F297E5898 /* Pods_SurveyThis.framework */; };
+		7D31D63E1EB80699003CC3DD /* libOAuthManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D31D6141EB80664003CC3DD /* libOAuthManager.a */; };
 		7D5C9A921EA46FD300D7D577 /* FacebookSDK in Resources */ = {isa = PBXBuildFile; fileRef = 7D5C9A911EA46FD300D7D577 /* FacebookSDK */; };
 		7D5C9A981EA4700E00D7D577 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C9A941EA4700E00D7D577 /* Bolts.framework */; };
 		7D5C9A991EA4700E00D7D577 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C9A951EA4700E00D7D577 /* FBSDKCoreKit.framework */; };
 		7D5C9A9A1EA4700E00D7D577 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C9A961EA4700E00D7D577 /* FBSDKLoginKit.framework */; };
 		7D5C9A9B1EA4700E00D7D577 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5C9A971EA4700E00D7D577 /* FBSDKShareKit.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
+		B9FAF9DC49D0D0D8659A8789 /* Pods_SurveyThisTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 814C39907E1E886843220C24 /* Pods_SurveyThisTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +211,13 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTLinking;
 		};
+		7D31D6131EB80664003CC3DD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 349D8B40E5974D56BA97BAE0 /* OAuthManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D91353961DA7849100AABC96;
+			remoteInfo = OAuthManager;
+		};
 		7D5C9A341EA44A8A00D7D577 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 34AA010EE0794FB6A7B0F548 /* RCTFBSDK.xcodeproj */;
@@ -243,7 +253,12 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SurveyThis/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SurveyThis/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		2A726E336832DEB60980466D /* Pods-SurveyThisTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyThisTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SurveyThisTests/Pods-SurveyThisTests.release.xcconfig"; sourceTree = "<group>"; };
+		349D8B40E5974D56BA97BAE0 /* OAuthManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = OAuthManager.xcodeproj; path = "../node_modules/react-native-oauth/ios/OAuthManager.xcodeproj"; sourceTree = "<group>"; };
 		34AA010EE0794FB6A7B0F548 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
+		39E57CBA98C269CCE2A3E018 /* Pods-SurveyThis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyThis.release.xcconfig"; path = "Pods/Target Support Files/Pods-SurveyThis/Pods-SurveyThis.release.xcconfig"; sourceTree = "<group>"; };
+		530F20F692A8A9AEFA23C13B /* Pods-SurveyThisTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyThisTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SurveyThisTests/Pods-SurveyThisTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5DAD61C52E508D9F297E5898 /* Pods_SurveyThis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurveyThis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7D5C9A911EA46FD300D7D577 /* FacebookSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FacebookSDK; sourceTree = "<group>"; };
@@ -251,8 +266,11 @@
 		7D5C9A951EA4700E00D7D577 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		7D5C9A961EA4700E00D7D577 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		7D5C9A971EA4700E00D7D577 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
+		7DA3CDF01EB808190048C2C6 /* SurveyThis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SurveyThis.entitlements; path = SurveyThis/SurveyThis.entitlements; sourceTree = "<group>"; };
+		814C39907E1E886843220C24 /* Pods_SurveyThisTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SurveyThisTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		9C16975BEDC1470C8149520E /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
+		F97158A0D325B2F2B852865B /* Pods-SurveyThis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SurveyThis.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SurveyThis/Pods-SurveyThis.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				B9FAF9DC49D0D0D8659A8789 /* Pods_SurveyThisTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +287,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D31D63E1EB80699003CC3DD /* libOAuthManager.a in Frameworks */,
 				7D5C9A981EA4700E00D7D577 /* Bolts.framework in Frameworks */,
 				7D5C9A991EA4700E00D7D577 /* FBSDKCoreKit.framework in Frameworks */,
 				7D5C9A9A1EA4700E00D7D577 /* FBSDKLoginKit.framework in Frameworks */,
@@ -284,6 +304,7 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				33D8B1E81E6B44C683964ED9 /* libRCTFBSDK.a in Frameworks */,
+				6FB7C502F8C4F777F5B679D8 /* Pods_SurveyThis.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +391,7 @@
 		13B07FAE1A68108700A75B9A /* SurveyThis */ = {
 			isa = PBXGroup;
 			children = (
+				7DA3CDF01EB808190048C2C6 /* SurveyThis.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -402,6 +424,8 @@
 				7D5C9A951EA4700E00D7D577 /* FBSDKCoreKit.framework */,
 				7D5C9A961EA4700E00D7D577 /* FBSDKLoginKit.framework */,
 				7D5C9A971EA4700E00D7D577 /* FBSDKShareKit.framework */,
+				5DAD61C52E508D9F297E5898 /* Pods_SurveyThis.framework */,
+				814C39907E1E886843220C24 /* Pods_SurveyThisTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -420,6 +444,25 @@
 			children = (
 				78C398B91ACF4ADC00677621 /* libRCTLinking.a */,
 				3DAD3E881DF850E9000B6D8A /* libRCTLinking-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7A05CC8B9CC19C7AE582A822 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F97158A0D325B2F2B852865B /* Pods-SurveyThis.debug.xcconfig */,
+				39E57CBA98C269CCE2A3E018 /* Pods-SurveyThis.release.xcconfig */,
+				530F20F692A8A9AEFA23C13B /* Pods-SurveyThisTests.debug.xcconfig */,
+				2A726E336832DEB60980466D /* Pods-SurveyThisTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7D31D6101EB80664003CC3DD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D31D6141EB80664003CC3DD /* libOAuthManager.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -447,6 +490,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				34AA010EE0794FB6A7B0F548 /* RCTFBSDK.xcodeproj */,
+				349D8B40E5974D56BA97BAE0 /* OAuthManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -469,6 +513,7 @@
 				00E356EF1AD99517003FC87E /* SurveyThisTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				40D4DA89C458444FBAFD31EF /* Frameworks */,
+				7A05CC8B9CC19C7AE582A822 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -490,9 +535,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "SurveyThisTests" */;
 			buildPhases = (
+				A737F9E22A8A280850EDDC54 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				E4C78C54E151C17DE2CB1E7B /* [CP] Embed Pods Frameworks */,
+				6D66B597F7CBA733DE85A4F5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -508,10 +556,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SurveyThis" */;
 			buildPhases = (
+				7DD847905D40A4E0EFB42F0A /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				ED509D35AE9AF0F35197E1E3 /* [CP] Embed Pods Frameworks */,
+				43EFB2676BAA8DEF2E18FE76 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -528,12 +579,19 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 820;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -549,6 +607,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 7D31D6101EB80664003CC3DD /* Products */;
+					ProjectRef = 349D8B40E5974D56BA97BAE0 /* OAuthManager.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -775,6 +837,13 @@
 			remoteRef = 78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7D31D6141EB80664003CC3DD /* libOAuthManager.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libOAuthManager.a;
+			remoteRef = 7D31D6131EB80664003CC3DD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7D5C9A351EA44A8A00D7D577 /* libRCTFBSDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -826,6 +895,96 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/packager/react-native-xcode.sh";
 		};
+		43EFB2676BAA8DEF2E18FE76 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SurveyThis/Pods-SurveyThis-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D66B597F7CBA733DE85A4F5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SurveyThisTests/Pods-SurveyThisTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7DD847905D40A4E0EFB42F0A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A737F9E22A8A280850EDDC54 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E4C78C54E151C17DE2CB1E7B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SurveyThisTests/Pods-SurveyThisTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED509D35AE9AF0F35197E1E3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SurveyThis/Pods-SurveyThis-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -871,6 +1030,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 530F20F692A8A9AEFA23C13B /* Pods-SurveyThisTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -880,6 +1040,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager",
 				);
 				INFOPLIST_FILE = SurveyThisTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -897,12 +1058,14 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A726E336832DEB60980466D /* Pods-SurveyThisTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager",
 				);
 				INFOPLIST_FILE = SurveyThisTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
@@ -920,12 +1083,15 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F97158A0D325B2F2B852865B /* Pods-SurveyThis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SurveyThis/SurveyThis.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEBUG_ACTIVITY_MODE = "";
 				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = disable;
+				DEVELOPMENT_TEAM = MBX763WSC3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -934,6 +1100,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS",
 				);
 				INFOPLIST_FILE = SurveyThis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -951,10 +1119,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39E57CBA98C269CCE2A3E018 /* Pods-SurveyThis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SurveyThis/SurveyThis.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_ACTIVITY_MODE = "";
+				DEVELOPMENT_TEAM = MBX763WSC3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -963,6 +1134,8 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fbsdk/ios/RCTFBSDK/**",
+					"$(SRCROOT)/../node_modules/react-native-oauth/ios/OAuthManager",
+					"$(SRCROOT)/../node_modules/react-native/Libraries/LinkingIOS",
 				);
 				INFOPLIST_FILE = SurveyThis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -9,7 +9,6 @@ import { CONFIG } from '../../../../index';
 
 class SignOut extends Component {
   render() {
-    const { dispatch } = this.props;
     return (
       <Button
         title="Logout"
@@ -19,7 +18,9 @@ class SignOut extends Component {
   }
 
   signOut() {
+    const { dispatch } = this.props;
     LoginManager.logOut();
+
     dispatch({ type: 'SIGNOUT' });
   }
 }

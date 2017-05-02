@@ -21,9 +21,23 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Facebook</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb727373427424645</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Google</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1009267532183-a580ir1vu23hnp29mr81s56mju8naboa</string>
 			</array>
 		</dict>
 	</array>

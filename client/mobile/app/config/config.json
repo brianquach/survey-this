@@ -1,3 +1,9 @@
 {
-  "iosClientId": "1009267532183-a580ir1vu23hnp29mr81s56mju8naboa.apps.googleusercontent.com"
+  google: {
+    "iosCallbackURL": "com.googleusercontent.apps.1009267532183-a580ir1vu23hnp29mr81s56mju8naboa:/google",
+    "iosClientId": "1009267532183-a580ir1vu23hnp29mr81s56mju8naboa.apps.googleusercontent.com",
+    "webCallback_url": "http://localhost/google",
+    "webClientId": "1009267532183-0i8h55tmh2g4jsbtv4s8ti28p6r4kup6.apps.googleusercontent.com",
+    "webClientSecret": "PqiY4yz2KsbiM0N6mCG-lHj7",
+  }
 }
