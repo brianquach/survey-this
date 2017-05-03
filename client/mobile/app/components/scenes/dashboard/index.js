@@ -17,7 +17,7 @@ class Dashboard extends Component {
         <Button
           title="Create Survey"
           accessibilityLabel="Start creating your own survey"
-          onPress={() => { console.log('create'); }} />
+          onPress={() => dispatch({ type: 'CREATE_SURVEY' }) } />
         <Button
           title="Run Survey"
           accessibilityLabel="Run a survey you have created"
