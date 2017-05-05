@@ -18,6 +18,7 @@ class CreateSurvey extends Component {
       name: '',
       question: '',
       answerType: 1,
+      questions: [],
     };
   }
 
@@ -47,9 +48,14 @@ class CreateSurvey extends Component {
           <Picker.Item label="Yes/No" value="1" />
         </Picker>
         <Button
-          title="Add"
+          title="Add Question"
           accessibilityLabel="Add question to survey"
           onPress={ () => console.log('add question to survey') }
+        />
+        <Button
+          title="Create Survey"
+          accessibilityLabel="Finish creating survey"
+          onPress={ () => console.log('create survey') }
         />
       </View>
     );
