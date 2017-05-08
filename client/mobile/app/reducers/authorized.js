@@ -1,3 +1,5 @@
+'use strict';
+
 const authorized = (state = false, action) => {
   switch (action.type) {
     case 'SIGNIN':
