@@ -1,11 +1,21 @@
 'use strict';
 
-const authorized = (state = false, action) => {
+const initialState = {
+    isAuthorized: false,
+    name: '',
+    email: '',
+};
+
+const authorized = (state = initialState, action) => {
   switch (action.type) {
     case 'SIGNIN':
-      return true;
+      return Object.assign({}, state, {
+        isAuthorized: true,
+        name: action.name,
+        email: action.email
+      });
     case 'SIGNOUT':
-      return false;
+      return initialState;
     default:
       return state;
   }

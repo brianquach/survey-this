@@ -21,8 +21,12 @@ class SignIn extends Component {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onSignInComplete: () => {
-      ownProps.navigation.dispatch({ type: 'SIGNIN' });
+    onSignInComplete: (name, email) => {
+      ownProps.navigation.dispatch({
+        type: 'SIGNIN',
+        name: name,
+        email: email
+      });
     },
   };
 };

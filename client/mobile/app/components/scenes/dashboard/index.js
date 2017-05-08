@@ -8,10 +8,10 @@ import {
 import { connect } from 'react-redux';
 import SignOut from './signout';
 
+
 class Dashboard extends Component {
   render() {
     const { dispatch } = this.props;
-
     return (
       <View>
         <Button
@@ -32,5 +32,11 @@ class Dashboard extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    name: state.authorized.name,
+    email: state.authorized.email
+  };
+};
 
-export default connect()(Dashboard);
+export default connect(mapStateToProps)(Dashboard);
