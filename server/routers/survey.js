@@ -5,33 +5,35 @@ const DynamoDB = require('aws-sdk/clients/dynamodb');
 
 
 const router = express.Router();
-const table = new DynamoDB({ params: { TableName: 'Survey' } });
+const docClient = new DynamoDB.DocumentClient({
+  params: { TableName: 'Survey' }
+});
 
-// middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
   console.log('Time: ', Date.now())
   next()
 });
 
-// define the home page route
-router.get('/', function (req, res) {
+router.get('/:creator/:filter', function (req, res) {
+  const creator = req.params.creator;
+
   var params = {
     KeyConditionExpression: '#O = :v0',
     ExpressionAttributeNames: {
       "#O" : "Owner"
     },
     ExpressionAttributeValues: {
-        ":v0": {
-          "S": 'bquach@umail.ucsb.edu'
-        },
+        ":v0": creator,
     },
-
   };
-  table.query(params, function(err, data) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else     console.log(data);           // successful response
+
+  docClient.query(params, function(err, data) {
+    if (err) {
+      console.log(err, err.stack);
+    } else {
+      res.send(data);
+    }
   });
-  res.send('Survey GET route')
 });
 
 module.exports = router;
