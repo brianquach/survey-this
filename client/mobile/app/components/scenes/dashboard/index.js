@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import {
   Button,
-  ListView,
+  FlatList,
   Text,
   View
 } from 'react-native';
@@ -15,42 +15,42 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
 
-    this.ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
     this.state = {
-      dataSource: this.ds.cloneWithRows([])
+      surveys: []
     };
   }
 
   componentWillMount() {
-    fetch('http://localhost:3000/survey/bquach@umail.ucsb.edu/all', {
+    const creator = encodeURI(this.props.email);
+    const url = `http://localhost:3000/survey/${creator}/all`;
+    fetch(url, {
       method: 'GET',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        "Accept": 'application/json',
+        "Content-Type": 'application/json',
       }
     })
     .then((resp) => resp.json())
     .then((respJSON) => {
       const surveys = respJSON.Items;
       this.setState({
-        dataSource: this.ds.cloneWithRows(surveys)
+        surveys: surveys
       });
     })
     .catch((err) => {
       console.error(err);
     });
   }
+
   render() {
     const { dispatch } = this.props;
-    const dataSource = this.state.dataSource;
+    const surveys = this.state.surveys;
     return (
       <View>
-        <ListView
-          dataSource={ dataSource }
-          renderRow={ (rowData) => <Text>{ rowData.Title }</Text> }
-        />
+        <FlatList
+          data={ surveys }
+          renderItem={ ({item}) => <Text>{ item.Title }</Text> }
+          keyExtractor={ (item, index) => index } />
         <Button
           title="Create Survey"
           accessibilityLabel="Start creating your own survey"
