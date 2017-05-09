@@ -17,7 +17,6 @@ class FacebookSignIn extends Component {
   constructor(props) {
     super(props);
 
-    this.getUserInformation = this.getUserInformation.bind(this);
     this.signIn = this.signIn.bind(this);
   }
 
@@ -36,59 +35,47 @@ class FacebookSignIn extends Component {
   }
 
   signIn() {
+    const getAccessToken = this.getAccessToken;
     const getUserInformation = this.getUserInformation;
     const onSignInComplete = this.props.onSignInComplete;
 
     LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
-      function(result) {
+      (result) => {
         if (result.isCancelled) {
           alert('Login was cancelled');
         } else {
-          getUserInformation().then(
-            () => {
-              onSignInComplete();
+          getAccessToken();
+          getUserInformation((error, result) => {
+            if (error) {
+              console.log('Error fetching data: ' + error.toString());
+            } else {
+              console.log('Success fetching data: ' + result, result, result.email);
+              onSignInComplete(result.name, result.email);
             }
-          );
+          });
         }
       },
-      function(error) {
+      (error) => {
         alert('Login failed with error: ' + error);
       }
     );
   }
 
-  async getUserInformation() {
-    let r;
+  async getAccessToken() {
     try {
-      r = await AccessToken.getCurrentAccessToken().then(
-        (data) => {
-          if (data) {
-            console.log(data.accessToken.toString());
-            this.fbGraphRequestUserInformation();
-            return true;
-          }
-          return false;
-        }
-      );
+      return await AccessToken.getCurrentAccessToken();
     }
     catch(err) {
+      return err;
     }
-    return r;
   }
 
-  fbGraphRequestUserInformation() {
+  getUserInformation(callback) {
+    let graphRequestManager = new GraphRequestManager();
     const infoRequest = new GraphRequest(
-      '/me?fields=id,name,email',
-      null,
-      (error: ?Object, result: ?Object) => {
-        if (error) {
-          console.log('Error fetching data: ' + error.toString());
-        } else {
-          console.log('Success fetching data: ' + result, result.data, result.email);
-        }
-      },
+      '/me?fields=id,name,email', null, callback,
     );
-    new GraphRequestManager().addRequest(infoRequest).start();
+    graphRequestManager.addRequest(infoRequest).start();
   }
 
   signOut() {

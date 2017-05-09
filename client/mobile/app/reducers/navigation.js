@@ -1,3 +1,5 @@
+'use strict';
+
 import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigators/app-navigator';
 

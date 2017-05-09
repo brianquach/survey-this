@@ -1,3 +1,5 @@
+'use strict';
+
 import { combineReducers } from 'redux'
 import nav from './navigation'
 import authorized from './authorized'
