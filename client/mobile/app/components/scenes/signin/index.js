@@ -2,8 +2,7 @@
 
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { NavigationActions } from 'react-navigation';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import FacebookSignIn from './facebook-signin';
 
 
