@@ -8,6 +8,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
+import { SurveyRestAPI } from '../../../restful-api/survey'
 import SignOut from './signout';
 
 
@@ -21,24 +22,13 @@ class Dashboard extends Component {
   }
 
   componentWillMount() {
-    const creator = encodeURI(this.props.email);
-    const url = `http://localhost:3000/survey/${creator}/all`;
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        "Accept": 'application/json',
-        "Content-Type": 'application/json',
-      }
-    })
-    .then((resp) => resp.json())
-    .then((respJSON) => {
-      const surveys = respJSON.Items;
+    const params = {
+      email: this.props.email
+    };
+    SurveyRestAPI.getSurveys(params, (surveys) => {
       this.setState({
         surveys: surveys
       });
-    })
-    .catch((err) => {
-      console.error(err);
     });
   }
 
@@ -54,11 +44,11 @@ class Dashboard extends Component {
         <Button
           title="Create Survey"
           accessibilityLabel="Start creating your own survey"
-          onPress={() => dispatch({ type: 'CREATE_SURVEY' }) } />
+          onPress={ () => dispatch({ type: 'CREATE_SURVEY' }) } />
         <Button
           title="Run Survey"
           accessibilityLabel="Run a survey you have created"
-          onPress={() => { console.log('run'); }} />
+          onPress={ () => dispatch({ type: 'RUN_SURVEY' }) } />
         <Button
           title="Analytics"
           accessibilityLabel="View analytical information of your surveys"

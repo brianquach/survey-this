@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { SurveyRestAPI } from '../../../restful-api/survey';
 
 
 class CreateSurvey extends Component {
@@ -85,27 +86,14 @@ class CreateSurvey extends Component {
   }
 
   createSurvey() {
-    const creator = this.props.email;
-    const url = 'http://localhost:3000/survey';
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        "Accept": 'application/json',
-        "Content-Type": 'application/json',
-      },
-      body: JSON.stringify({
-        Title: this.state.title,
-        Creator: creator,
-        Questions: this.state.questions
-      })
-    })
-    .then((resp) => resp.json())
-    .then((respJSON) => {
-      const isSuccessful = respJSON.IsSuccessful;
+    const params = {
+      email: this.props.email,
+      questions: this.state.questions,
+      title: this.state.title
+    }
+    SurveyRestAPI.createSurvey(params, (resp) => {
+      const isSuccessful = resp.isSuccessful;
       console.log(isSuccessful);
-    })
-    .catch((err) => {
-      console.error(err);
     });
   }
 }
