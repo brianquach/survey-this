@@ -33,7 +33,10 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { dispatch } = this.props;
+    const {
+      goToCreateSurvey,
+      goToRunSurvey
+    } = this.props;
     const surveys = this.state.surveys;
     return (
       <View>
@@ -44,11 +47,11 @@ class Dashboard extends Component {
         <Button
           title="Create Survey"
           accessibilityLabel="Start creating your own survey"
-          onPress={ () => dispatch({ type: 'CREATE_SURVEY' }) } />
+          onPress={ goToCreateSurvey } />
         <Button
           title="Run Survey"
           accessibilityLabel="Run a survey you have created"
-          onPress={ () => dispatch({ type: 'RUN_SURVEY' }) } />
+          onPress={ goToRunSurvey } />
         <Button
           title="Analytics"
           accessibilityLabel="View analytical information of your surveys"
@@ -66,4 +69,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    goToCreateSurvey: () => dispatch({ type: 'CREATE_SURVEY' }),
+    goToRunSurvey: () => dispatch({ type: 'RUN_SURVEY' })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
