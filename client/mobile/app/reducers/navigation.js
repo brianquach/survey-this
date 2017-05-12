@@ -15,8 +15,14 @@ const nav = (state = initialState, action) => {
     case 'SIGNOUT':
       nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'SignIn' }), state);
       break;
+    case 'DASHBOARD':
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'Dashboard' }), state);
+      break;
     case 'CREATE_SURVEY':
       nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'CreateSurvey' }), state);
+      break;
+    case 'RUN_SURVEY':
+      nextState = AppNavigator.router.getStateForAction(NavigationActions.navigate({ routeName: 'RunSurvey' }), state);
       break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);

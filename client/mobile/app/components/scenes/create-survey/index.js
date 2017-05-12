@@ -94,6 +94,7 @@ class CreateSurvey extends Component {
     SurveyRestAPI.createSurvey(params, (resp) => {
       const isSuccessful = resp.isSuccessful;
       console.log(isSuccessful);
+      this.props.onSurveyCreate();
     });
   }
 }
@@ -104,4 +105,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(CreateSurvey);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSurveyCreate: () => {
+      dispatch({
+        type: 'DASHBOARD'
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateSurvey);
