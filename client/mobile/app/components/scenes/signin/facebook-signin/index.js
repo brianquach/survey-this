@@ -4,26 +4,41 @@ import React, { Component } from 'react';
 import {
   Button,
 } from 'react-native';
-import { connect } from 'react-redux';
 import {
   LoginManager,
   AccessToken,
   GraphRequest,
   GraphRequestManager,
 } from 'react-native-fbsdk';
+import { Storage } from '../../../../lib/storage'
 
 
 class FacebookSignIn extends Component {
   constructor(props) {
-    super(props);
-
+    super();
     this.signIn = this.signIn.bind(this);
   }
 
   componentDidMount() {
-    if (!this.props.isLoggedIn) {
-      this.signOut();
-    }
+    this.getAccessToken().then(
+      (resp) => {
+        if (resp === null) {
+          throw 'No access token';
+        }
+      }
+    ).catch(
+      (reason) => {
+        console.log(reason);
+      }
+    ).then(
+      () => {
+        Storage.getItem('auth').then((auth) => {
+          if (auth !== null) {
+            this.props.onSignInComplete(auth.name, auth.email);
+          }
+        });
+      }
+    );
   }
 
   render() {
@@ -35,6 +50,32 @@ class FacebookSignIn extends Component {
   }
 
   signIn() {
+    this.getAccessToken().then(
+      (resp) => {
+        if (resp === null) {
+
+        }
+      }
+    ).catch(reason => {
+      console.error(reason);
+      }
+    ).then(
+      () => {
+        Storage.getItem('auth').then((auth) => {
+          if (auth !== null) {
+            this.props.onSignInComplete(auth.name, auth.email);
+          } else {
+            this.requestAccess();
+          }
+        });
+      },
+      () => {
+        this.requestAccess();
+      }
+    );
+  }
+
+  requestAccess() {
     const getAccessToken = this.getAccessToken;
     const getUserInformation = this.getUserInformation;
     const onSignInComplete = this.props.onSignInComplete;
@@ -50,6 +91,10 @@ class FacebookSignIn extends Component {
               console.log('Error fetching data: ' + error.toString());
             } else {
               console.log('Success fetching data: ' + result, result, result.email);
+              Storage.setItem('auth', {
+                name: result.name,
+                email: result.email
+              });
               onSignInComplete(result.name, result.email);
             }
           });
@@ -77,16 +122,6 @@ class FacebookSignIn extends Component {
     );
     graphRequestManager.addRequest(infoRequest).start();
   }
-
-  signOut() {
-    LoginManager.logOut();
-  }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoggedIn: state.authorized
-  }
-};
-
-export default connect(mapStateToProps)(FacebookSignIn);
+export default FacebookSignIn;

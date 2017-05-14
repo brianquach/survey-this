@@ -5,7 +5,7 @@ import { Button } from 'react-native';
 import { connect } from 'react-redux';
 import { LoginManager } from 'react-native-fbsdk';
 import { CONFIG } from '../../../../index';
-
+import { Storage } from '../../../../lib/storage';
 
 class SignOut extends Component {
   render() {
@@ -20,7 +20,7 @@ class SignOut extends Component {
   signOut() {
     const { dispatch } = this.props;
     LoginManager.logOut();
-
+    Storage.removeItem('auth');
     dispatch({ type: 'SIGNOUT' });
   }
 }
