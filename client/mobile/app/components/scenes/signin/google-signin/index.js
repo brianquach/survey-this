@@ -9,7 +9,7 @@ import { CONFIG } from '../../../../index';
 
 class GoogleSignIn extends Component {
   constructor(props) {
-    super(props);
+    super();
 
     this.manager = new OAuthManager('Google');
     this.manager.configure({

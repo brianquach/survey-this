@@ -15,7 +15,7 @@ import { SurveyRestAPI } from '../../../restful-api/survey';
 
 class CreateSurvey extends Component {
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       title: '',

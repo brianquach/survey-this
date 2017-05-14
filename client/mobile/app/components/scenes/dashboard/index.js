@@ -14,7 +14,7 @@ import SignOut from './signout';
 
 class Dashboard extends Component {
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       surveys: []

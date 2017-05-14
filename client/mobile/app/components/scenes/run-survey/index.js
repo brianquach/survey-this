@@ -12,7 +12,7 @@ import { SurveyRestAPI } from '../../../restful-api/survey';
 
 class RunSurvey extends Component {
   constructor(props) {
-    super(props);
+    super();
 
     this.state = {
       surveys: []
