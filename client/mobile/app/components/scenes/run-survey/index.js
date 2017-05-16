@@ -9,13 +9,15 @@ import {
 import { connect } from 'react-redux';
 import { SurveyRestAPI } from '../../../restful-api/survey';
 import RunCountModal from './run-count-modal';
+import { SurveyLib } from '../../../lib/survey';
 
 
 class RunSurvey extends Component {
   state = {
     surveys: [],
     selectedSurvey: {},
-    showRunCountModal: false
+    showRunCountModal: false,
+    isRunning: false
   }
 
   constructor(props) {
@@ -23,6 +25,7 @@ class RunSurvey extends Component {
 
     this.selectSurvey = this.selectSurvey.bind(this);
     this.setModalVisible = this.setModalVisible.bind(this);
+    this.runSurvey = this.runSurvey.bind(this);
   }
   componentWillMount() {
     const params = {
@@ -38,21 +41,28 @@ class RunSurvey extends Component {
   render() {
     const surveys = this.state.surveys;
     const showRunCountModal = this.state.showRunCountModal;
+    const isRunning = this.state.isRunning;
 
     return (
       <View>
-        <Text>Pick survey to run:</Text>
-        <FlatList
-          data={ surveys }
-          renderItem={ ({item}) =>
-            <Text
-              style={{ lineHeight: 40 }}
-              onPress={ () => this.selectSurvey(item) }>
-              { item.Title }
-            </Text>
-          }
-          keyExtractor={ (item, index) => index }
-        />
+        { !isRunning ? (
+          <View>
+            <Text>Pick survey to run:</Text>
+            <FlatList
+              data={ surveys }
+              renderItem={ ({item}) =>
+                <Text
+                  style={{ lineHeight: 40 }}
+                  onPress={ () => this.selectSurvey(item) }>
+                  { item.Title }
+                </Text>
+              }
+              keyExtractor={ (item, index) => index }
+            />
+          </View>
+        ) : (
+          this.state.currentQuestionScene
+        )}
         <RunCountModal
           show={ showRunCountModal }
           setModalVisible={ this.setModalVisible }
@@ -64,12 +74,31 @@ class RunSurvey extends Component {
   }
 
   selectSurvey(survey) {
-    this.setState({ selectedSurvey: survey });
+    this.setState({
+      selectedSurvey: survey,
+      isRunning: true
+    });
     this.setModalVisible(true);
   }
 
   runSurvey(runCount) {
-    console.log('run', parseInt(runCount));
+    const survey = this.state.selectedSurvey;
+
+    SurveyLib.Run.init(
+      survey,
+      parseInt(runCount),
+      (questionScene) => {
+        this.setState({ currentQuestionScene: questionScene });
+      },
+      () => {
+        console.log('done');
+      }
+    );
+    SurveyLib.Run.start();
+  }
+
+  renderQuestion() {
+
   }
 
   setModalVisible(isVisible) {
