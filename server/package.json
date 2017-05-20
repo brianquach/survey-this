@@ -11,7 +11,8 @@
   "dependencies": {
     "aws-sdk": "^2.49.0",
     "body-parser": "^1.17.1",
-    "express": "^4.15.2"
+    "express": "^4.15.2",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "config": "^1.25.1",
