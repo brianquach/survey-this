@@ -23,6 +23,7 @@ class CreateSurvey extends Component {
       answerType: 1,
       questions: [],
     };
+    this.questionId = 0;
 
     this.addQuestion = this.addQuestion.bind(this);
     this.createSurvey = this.createSurvey.bind(this);
@@ -73,10 +74,13 @@ class CreateSurvey extends Component {
   }
 
   addQuestion() {
+    const id = this.getNextQuestionId();
+
     this.setState({
         questions: [
           ...this.state.questions,
           {
+            Id: id,
             Question: this.state.question,
             AnswerType: this.state.answerType
           }
@@ -96,6 +100,10 @@ class CreateSurvey extends Component {
       console.log(isSuccessful);
       this.props.onSurveyCreate();
     });
+  }
+
+  getNextQuestionId() {
+    return this.questionId += 1;
   }
 }
 
