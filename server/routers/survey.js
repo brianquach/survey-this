@@ -2,6 +2,7 @@
 
 const express = require('express');
 const DynamoDB = require('aws-sdk/clients/dynamodb');
+const uuidV4 = require('uuid/v4');
 var bodyParser = require('body-parser');
 
 
@@ -40,12 +41,14 @@ router.post('/', function (req, res) {
   const creator = req.body.Creator;
   const title = req.body.Title;
   const questions = req.body.Questions;
+  const uuid = uuidV4();
 
   var params = {
     Item: {
       "Creator": creator,
       "Title": title,
-      "Questions": questions
+      "Questions": questions,
+      "Id": uuid
     }
   };
 
