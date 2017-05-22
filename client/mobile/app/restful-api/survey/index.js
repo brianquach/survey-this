@@ -38,9 +38,9 @@ exports.SurveyRestAPI.createSurvey = (params, callback) => {
       "Content-Type": 'application/json',
     },
     body: JSON.stringify({
-      Title: title,
-      Creator: creator,
-      Questions: questions
+      title: title,
+      creator: creator,
+      questions: questions
     })
   })
   .then((resp) => resp.json())

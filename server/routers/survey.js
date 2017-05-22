@@ -37,9 +37,9 @@ router.get('/:creator/:filter', function (request, response) {
 });
 
 router.post('/', function (request, response) {
-  const creator = request.body.Creator;
-  const title = request.body.Title;
-  const questions = request.body.Questions;
+  const creator = request.body.creator;
+  const title = request.body.title;
+  const questions = request.body.questions;
   const uuid = uuidV4();
 
   var params = {
@@ -51,8 +51,7 @@ router.post('/', function (request, response) {
     },
     TableName: 'Survey'
   };
-
-  sendResponse();
+  
   docClient.put(params, function(err, data) {
     if (err) {
       console.log(err, err.stack);
