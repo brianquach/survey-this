@@ -27,6 +27,7 @@ class RunSurvey extends Component {
     this.setModalVisible = this.setModalVisible.bind(this);
     this.runSurvey = this.runSurvey.bind(this);
   }
+
   componentWillMount() {
     const params = {
       email: this.props.email
@@ -91,14 +92,10 @@ class RunSurvey extends Component {
         this.setState({ currentQuestionScene: questionScene });
       },
       () => {
-        console.log('done');
+        this.props.goToDashboard();
       }
     );
     SurveyLib.Run.start();
-  }
-
-  renderQuestion() {
-
   }
 
   setModalVisible(isVisible) {
@@ -112,4 +109,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(RunSurvey);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    goToDashboard: () => dispatch({ type: 'DASHBOARD' })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RunSurvey);

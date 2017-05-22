@@ -9,17 +9,67 @@ import {
 
 
 module.exports.SurveyRun = (() => {
+  class QuestionScene extends Component {
+    render() {
+      const questionId = this.props.id;
+      const questionText = this.props.text;
+      return (
+        <View>
+          <Text>{ questionText }</Text>
+          <Button
+            title="Yes"
+            onPress={ () => this.response(questionId, true) }
+          />
+          <Button
+            title="No"
+            onPress={ () => this.response(questionId, false) }
+          />
+        </View>
+      );
+    }
+
+    response(questionId, answer) {
+      this.props.surveyResponseRecorder.recordResponse(questionId, answer);
+      this.props.renderNextQuestion();
+    }
+  }
+
+  class SurveyResponseRecorder {
+    constructor(id) {
+      this.id = id;
+      this.response = {};
+    }
+
+    recordResponse(id, answer) {
+      if (typeof this.response[id] === 'undefined') {
+        this.response[id] = {
+          "Yes": 0,
+          "No": 0
+        }
+      }
+      var answerKey = (answer) ? 'Yes' : 'No';
+      this.response[id][answerKey] += 1;
+    }
+  }
+
   class SceneController {
-    constructor(questions, runCount, renderer, onFinish) {
+    constructor(questions, runCount, renderer, surveyResponseRecorder, onFinish) {
       this.scenes = [];
       this.runCount = runCount;
       this.currentSceneIndex = 0;
       this.renderer = renderer;
       this.onFinish = onFinish;
+      this.surveyResponseRecorder = surveyResponseRecorder;
+      this.renderNextQuestion = this.renderNextQuestion.bind(this);
 
       questions.forEach((question) => {
         this.scenes.push(
-          <QuestionScene questionText={ question.Question } />
+          <QuestionScene
+            id={ question.Id }
+            text={ question.Question }
+            surveyResponseRecorder={ this.surveyResponseRecorder }
+            renderNextQuestion={ this.renderNextQuestion }
+          />
         );
       });
     }
@@ -46,44 +96,22 @@ module.exports.SurveyRun = (() => {
         if (this.runCount > 0) {
           this.restart();
         } else {
+          console.log(this.surveyResponseRecorder.response);
           this.onFinish();
         }
       }
     }
   }
 
-  class QuestionScene extends Component {
-    render() {
-      const questionText = this.props.questionText;
-      return (
-        <View>
-          <Text>{ questionText }</Text>
-          <Button
-            title="Yes"
-            onPress={ () => response(true) }
-          />
-          <Button
-            title="No"
-            onPress={ () => response(false) }
-          />
-        </View>
-      );
-    }
-  }
-
   let tracker;
 
   function init(survey, runCount, questionSceneRenderer, onFinish) {
-    tracker = new SceneController(survey.Questions, runCount, questionSceneRenderer, onFinish);
+    const surveyResponseRecorder = new SurveyResponseRecorder(survey.id);
+    tracker = new SceneController(survey.Questions, runCount, questionSceneRenderer, surveyResponseRecorder, onFinish);
   }
 
   function start() {
     tracker.start();
-  }
-
-  function response(answer) {
-    // Save resonse
-    tracker.renderNextQuestion();
   }
 
   return {
