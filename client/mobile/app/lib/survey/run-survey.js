@@ -37,18 +37,18 @@ module.exports.SurveyRun = (() => {
   class SurveyResponseRecorder {
     constructor(id) {
       this.id = id;
-      this.response = {};
+      this.results = {};
     }
 
     recordResponse(id, answer) {
-      if (typeof this.response[id] === 'undefined') {
-        this.response[id] = {
+      if (typeof this.results[id] === 'undefined') {
+        this.results[id] = {
           "Yes": 0,
           "No": 0
         }
       }
       var answerKey = (answer) ? 'Yes' : 'No';
-      this.response[id][answerKey] += 1;
+      this.results[id][answerKey] += 1;
     }
   }
 
@@ -96,8 +96,10 @@ module.exports.SurveyRun = (() => {
         if (this.runCount > 0) {
           this.restart();
         } else {
-          console.log(this.surveyResponseRecorder.response);
-          this.onFinish();
+          this.onFinish(
+            this.surveyResponseRecorder.id,
+            this.surveyResponseRecorder.results
+          );
         }
       }
     }
@@ -106,7 +108,7 @@ module.exports.SurveyRun = (() => {
   let tracker;
 
   function init(survey, runCount, questionSceneRenderer, onFinish) {
-    const surveyResponseRecorder = new SurveyResponseRecorder(survey.id);
+    const surveyResponseRecorder = new SurveyResponseRecorder(survey.Id);
     tracker = new SceneController(survey.Questions, runCount, questionSceneRenderer, surveyResponseRecorder, onFinish);
   }
 

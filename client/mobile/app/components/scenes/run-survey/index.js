@@ -91,7 +91,12 @@ class RunSurvey extends Component {
       (questionScene) => {
         this.setState({ currentQuestionScene: questionScene });
       },
-      () => {
+      (surveyId, surveyResults) => {
+        const params = {
+          surveyId: surveyId,
+          surveyResults: surveyResults
+        };
+        SurveyRestAPI.saveSurveyResponse(params);
         this.props.goToDashboard();
       }
     );
