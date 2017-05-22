@@ -35,8 +35,9 @@ module.exports.SurveyRun = (() => {
   }
 
   class SurveyResponseRecorder {
-    constructor(id) {
-      this.id = id;
+    constructor(surveyId, resultSetName) {
+      this.resultSetName = resultSetName;
+      this.surveyId = surveyId;
       this.results = {};
     }
 
@@ -97,7 +98,8 @@ module.exports.SurveyRun = (() => {
           this.restart();
         } else {
           this.onFinish(
-            this.surveyResponseRecorder.id,
+            this.surveyResponseRecorder.resultSetName,
+            this.surveyResponseRecorder.surveyId,
             this.surveyResponseRecorder.results
           );
         }
@@ -107,8 +109,8 @@ module.exports.SurveyRun = (() => {
 
   let tracker;
 
-  function init(survey, runCount, questionSceneRenderer, onFinish) {
-    const surveyResponseRecorder = new SurveyResponseRecorder(survey.Id);
+  function init(survey, resultSetName, runCount, questionSceneRenderer, onFinish) {
+    const surveyResponseRecorder = new SurveyResponseRecorder(survey.Id, resultSetName);
     tracker = new SceneController(survey.Questions, runCount, questionSceneRenderer, surveyResponseRecorder, onFinish);
   }
 

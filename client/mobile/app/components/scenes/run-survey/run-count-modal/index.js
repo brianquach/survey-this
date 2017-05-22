@@ -12,7 +12,8 @@ import {
 
 class RunCountModal extends Component {
   state = {
-    runCount: '1'
+    runCount: '1',
+    resultSetName: ''
   }
 
   render() {
@@ -30,11 +31,18 @@ class RunCountModal extends Component {
          <View style={{marginTop: 22}}>
           <View>
             <Text>{ survey.Title }</Text>
+            <Text>Save survey data set as:</Text>
+            <TextInput
+              style={ { height: 40, borderColor: 'gray', borderWidth: 1 } }
+              onChangeText={ (resultSetName) => this.setState({ resultSetName }) }
+              value={ this.state.resultSetName }
+            />
+
             <Text>How many times do you want to run the survey?</Text>
             <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-              onChangeText={(runCount) => this.setState({runCount})}
-              value={this.state.runCount}
+              style={ { height: 40, borderColor: 'gray', borderWidth: 1 } }
+              onChangeText={ (runCount) => this.setState({ runCount }) }
+              value={ this.state.runCount }
               keyboardType={ 'number-pad' }
             />
 
@@ -60,7 +68,9 @@ class RunCountModal extends Component {
   }
 
   run() {
-    this.props.onRun(this.state.runCount);
+    const resultSetName = this.state.resultSetName;
+    const runCount = this.state.runCount;
+    this.props.onRun(resultSetName, runCount);
     this.setModalVisible(false);
   }
 

@@ -53,6 +53,7 @@ exports.SurveyRestAPI.createSurvey = (params, callback) => {
 };
 
 exports.SurveyRestAPI.saveSurveyResponse = (params, callback) => {
+  const resultSetName = params.resultSetName || '';
   const surveyId = params.surveyId || '';
   const surveyResults = params.surveyResults || {};
   const url = 'http://localhost:3000/survey/results';
@@ -65,6 +66,7 @@ exports.SurveyRestAPI.saveSurveyResponse = (params, callback) => {
       "Content-Type": 'application/json',
     },
     body: JSON.stringify({
+      resultSetName: resultSetName,
       surveyId: surveyId,
       surveyResults: surveyResults
     })

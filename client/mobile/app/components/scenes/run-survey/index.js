@@ -81,7 +81,7 @@ class RunSurvey extends Component {
     this.setModalVisible(true);
   }
 
-  runSurvey(runCount) {
+  runSurvey(resultSetName, runCount) {
     const survey = this.state.selectedSurvey;
 
     this.setState({
@@ -90,12 +90,14 @@ class RunSurvey extends Component {
 
     SurveyLib.Run.init(
       survey,
+      resultSetName,
       parseInt(runCount),
       (questionScene) => {
         this.setState({ currentQuestionScene: questionScene });
       },
-      (surveyId, surveyResults) => {
+      (resultSetName, surveyId, surveyResults) => {
         const params = {
+          resultSetName: resultSetName,
           surveyId: surveyId,
           surveyResults: surveyResults
         };

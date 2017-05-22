@@ -51,7 +51,7 @@ router.post('/', function (request, response) {
     },
     TableName: 'Survey'
   };
-  
+
   docClient.put(params, function(err, data) {
     if (err) {
       console.log(err, err.stack);
@@ -64,11 +64,13 @@ router.post('/', function (request, response) {
 router.post('/results', function (request, response) {
   const surveyResults = request.body.surveyResults;
   const surveyId = request.body.surveyId;
-
+  const resultSetName = request.body.resultSetName;
+  
   var params = {
     Item: {
       "SurveyId": surveyId,
-      "Results": surveyResults
+      "Results": surveyResults,
+      "ResultSetName": resultSetName
     },
     TableName: 'SurveyResults'
   };
