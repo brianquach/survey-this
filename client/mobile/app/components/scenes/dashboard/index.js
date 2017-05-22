@@ -8,7 +8,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import { SurveyRestAPI } from '../../../restful-api/survey'
+import { SurveyRestAPI } from '../../../lib/rest-api/survey'
 import SignOut from './signout';
 
 
