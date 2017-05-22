@@ -76,14 +76,17 @@ class RunSurvey extends Component {
 
   selectSurvey(survey) {
     this.setState({
-      selectedSurvey: survey,
-      isRunning: true
+      selectedSurvey: survey
     });
     this.setModalVisible(true);
   }
 
   runSurvey(runCount) {
     const survey = this.state.selectedSurvey;
+
+    this.setState({
+      isRunning: true
+    });
 
     SurveyLib.Run.init(
       survey,

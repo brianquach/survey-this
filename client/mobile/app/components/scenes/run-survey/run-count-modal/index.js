@@ -43,11 +43,20 @@ class RunCountModal extends Component {
             }}>
               <Text>Run</Text>
             </TouchableHighlight>
+            <TouchableHighlight onPress={() => {
+              this.close()
+            }}>
+              <Text>Close</Text>
+            </TouchableHighlight>
           </View>
          </View>
         </Modal>
       </View>
     );
+  }
+
+  close() {
+    this.setModalVisible(false);
   }
 
   run() {
