@@ -7,7 +7,7 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import { SurveyRestAPI } from '../../../lib/rest-api/survey';
+import { SurveyRestAPI } from '../../../lib/rest-api';
 import RunCountModal from './run-count-modal';
 import { SurveyLib } from '../../../lib/survey';
 
