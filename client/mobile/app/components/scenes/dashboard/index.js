@@ -3,47 +3,26 @@
 import React, { Component } from 'react';
 import {
   Button,
-  FlatList,
   Text,
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import { SurveyRestAPI } from '../../../lib/rest-api/survey'
 import SignOut from './signout';
 
 
 class Dashboard extends Component {
-  constructor(props) {
-    super();
-
-    this.state = {
-      surveys: []
-    };
-  }
-
-  componentWillMount() {
-    const params = {
-      email: this.props.email
-    };
-    SurveyRestAPI.getSurveys(params, (surveys) => {
-      this.setState({
-        surveys: surveys
-      });
-    });
-  }
-
   render() {
     const {
       goToCreateSurvey,
-      goToRunSurvey
+      goToRunSurvey,
+      name
     } = this.props;
-    const surveys = this.state.surveys;
+
+    const welcomeMsg = `Welcome to your dashboard, ${name}!`;
+
     return (
       <View>
-        <FlatList
-          data={ surveys }
-          renderItem={ ({item}) => <Text>{ item.Title }</Text> }
-          keyExtractor={ (item, index) => index } />
+        <Text>{ welcomeMsg }</Text>
         <Button
           title="Create Survey"
           accessibilityLabel="Start creating your own survey"
@@ -64,8 +43,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    name: state.authorized.name,
-    email: state.authorized.email
+    name: state.authorized.name
   };
 };
 
