@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { SurveyRestAPI } from '../../../lib/rest-api';
+import Results from './results';
 
 
 class SurveyAnalytics extends Component {
@@ -16,8 +17,12 @@ class SurveyAnalytics extends Component {
     super();
 
     this.state = {
-      surveys: []
+      surveys: [],
+      showResults: false,
+      selectedSurvey: {}
     }
+
+    this.closeResults = this.closeResults.bind(this);
   }
 
   componentWillMount() {
@@ -31,21 +36,44 @@ class SurveyAnalytics extends Component {
 
   render() {
     const surveys = this.state.surveys;
+    const showResults = this.state.showResults;
+    const selectedSurvey = this.state.selectedSurvey;
 
     return (
       <View>
-        <Text>Select survey to see results:</Text>
-        <FlatList
-          data={ surveys }
-          renderItem={ ({item}) =>
-            <TouchableHighlight onPress={ () => console.log('press') }>
-              <Text>{ item.Title }</Text>
-            </TouchableHighlight>
-          }
-          keyExtractor={ (item, index) => index }
+      {!showResults ? (
+        <View>
+          <Text>Select survey to see results:</Text>
+          <FlatList
+            data={ surveys }
+            renderItem={ ({item}) =>
+              <TouchableHighlight onPress={ () => this.displaySurveyResults(item) }>
+                <Text>{ item.Title }</Text>
+              </TouchableHighlight>
+            }
+            keyExtractor={ (item, index) => index }
+          />
+        </View>
+      ) : (
+        <Results
+          surveyTitle={ selectedSurvey.Title }
+          surveyQuestions={ selectedSurvey.Questions }
+          closeResults={ this.closeResults }
         />
+      )}
       </View>
     );
+  }
+
+  displaySurveyResults(selectedSurvey) {
+    this.setState({
+      selectedSurvey,
+      showResults: true
+    });
+  }
+
+  closeResults() {
+    this.setState({ showResults: false });
   }
 }
 
