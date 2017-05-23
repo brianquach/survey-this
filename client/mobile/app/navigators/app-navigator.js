@@ -3,6 +3,7 @@ import Dashboard from '../components/scenes/dashboard';
 import SignIn from '../components/scenes/signin';
 import CreateSurvey from '../components/scenes/create-survey';
 import RunSurvey from '../components/scenes/run-survey';
+import SurveyAnalytics from '../components/scenes/analytics';
 
 
 export const AppNavigator = StackNavigator({
@@ -10,4 +11,5 @@ export const AppNavigator = StackNavigator({
   Dashboard: { screen: Dashboard },
   CreateSurvey: { screen: CreateSurvey },
   RunSurvey: { screen: RunSurvey },
+  SurveyAnalytics: { screen: SurveyAnalytics },
 });

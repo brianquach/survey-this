@@ -15,6 +15,7 @@ class Dashboard extends Component {
     const {
       goToCreateSurvey,
       goToRunSurvey,
+      goToSurveyAnalytics,
       name
     } = this.props;
 
@@ -34,7 +35,7 @@ class Dashboard extends Component {
         <Button
           title="Analytics"
           accessibilityLabel="View analytical information of your surveys"
-          onPress={() => { console.log('analytics'); }} />
+          onPress={ goToSurveyAnalytics } />
         <SignOut />
       </View>
     );
@@ -50,7 +51,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     goToCreateSurvey: () => dispatch({ type: 'CREATE_SURVEY' }),
-    goToRunSurvey: () => dispatch({ type: 'RUN_SURVEY' })
+    goToRunSurvey: () => dispatch({ type: 'RUN_SURVEY' }),
+    goToSurveyAnalytics: () => dispatch({ type: 'SURVEY_ANALYTICS' })
   };
 };
 

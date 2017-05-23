@@ -28,6 +28,27 @@ const saveSurveyResponse = (params, callback) => {
   });
 };
 
+const getSurveyResponse = (params, callback) => {
+  const surveyId = params.surveyId || '';
+  const url = `http://localhost:3000/results/${surveyId}`;
+  callback = callback || noop;
+
+  fetch(url, {
+    method: 'GET',
+    headers: {
+      "Accept": 'application/json',
+      "Content-Type": 'application/json',
+    }
+  })
+  .then((resp) => resp.json())
+  .then((respJSON) => {
+    callback(respJSON.IsSuccessful);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+};
+
 exports.ResultsAPI = {
   saveSurveyResponse: saveSurveyResponse
 };
