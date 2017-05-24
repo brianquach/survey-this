@@ -2,14 +2,13 @@
 
 const express = require('express');
 const DynamoDB = require('aws-sdk/clients/dynamodb');
-const uuidV4 = require('uuid/v4');
 var bodyParser = require('body-parser');
 
 
 const router = express.Router();
 const docClient = new DynamoDB.DocumentClient({
   params: {
-    TableName: 'Survey'
+    TableName: 'SurveyResults'
   }
 });
 
@@ -21,13 +20,13 @@ router.use(function timeLog (request, response, next) {
 router.use(bodyParser.json());
 //router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-router.get('/:creator/:filter', function (request, response) {
-  const creator = request.params.creator;
+router.get('/:surveyId', function (request, response) {
+  const surveyId = request.params.surveyId;
 
   let params = {
-    KeyConditionExpression: 'Creator = :v0',
+    KeyConditionExpression: 'SurveyId = :v0',
     ExpressionAttributeValues: {
-        ":v0": creator,
+        ":v0": surveyId,
     }
   };
 
@@ -35,23 +34,21 @@ router.get('/:creator/:filter', function (request, response) {
     if (err) {
       console.log(err, err.stack);
     } else {
-      response.send(data);
+      response.send(data.Items[0]);
     }
   });
 });
 
 router.post('/', function (request, response) {
-  const creator = request.body.creator;
-  const title = request.body.title;
-  const questions = request.body.questions;
-  const uuid = uuidV4();
+  const surveyResults = request.body.surveyResults;
+  const surveyId = request.body.surveyId;
+  const resultSetName = request.body.resultSetName;
 
   let params = {
     Item: {
-      "Creator": creator,
-      "Title": title,
-      "Questions": questions,
-      "Id": uuid
+      "SurveyId": surveyId,
+      "Results": surveyResults,
+      "ResultSetName": resultSetName
     }
   };
 
