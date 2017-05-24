@@ -4,7 +4,7 @@ const saveSurveyResponse = (params, callback) => {
   const resultSetName = params.resultSetName || '';
   const surveyId = params.surveyId || '';
   const surveyResults = params.surveyResults || {};
-  const url = 'http://localhost:3000/survey/results';
+  const url = 'http://localhost:3000/results';
   callback = callback || noop;
 
   fetch(url, {
@@ -42,7 +42,7 @@ const getSurveyResponse = (params, callback) => {
   })
   .then((resp) => resp.json())
   .then((respJSON) => {
-    callback(respJSON.IsSuccessful);
+    callback(respJSON);
   })
   .catch((err) => {
     console.error(err);
@@ -50,5 +50,6 @@ const getSurveyResponse = (params, callback) => {
 };
 
 exports.ResultsAPI = {
-  saveSurveyResponse: saveSurveyResponse
+  saveSurveyResponse: saveSurveyResponse,
+  getSurveyResponse: getSurveyResponse
 };
