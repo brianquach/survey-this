@@ -36,9 +36,9 @@ const createSurvey = (params, callback) => {
       "Content-Type": 'application/json',
     },
     body: JSON.stringify({
-      title: title,
-      creator: creator,
-      questions: questions
+      title,
+      creator,
+      questions
     })
   })
   .then((resp) => resp.json())

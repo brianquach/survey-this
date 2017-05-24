@@ -15,10 +15,10 @@ const saveSurveyResponse = (params, callback) => {
       "Content-Type": 'application/json',
     },
     body: JSON.stringify({
-      resultSetName: resultSetName,
-      surveyId: surveyId,
-      surveyTitle: surveyTitle,
-      surveyResults: surveyResults
+      resultSetName,
+      surveyId,
+      surveyTitle,
+      surveyResults
     })
   })
   .then((resp) => resp.json())
