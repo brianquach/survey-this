@@ -89,16 +89,18 @@ class RunSurvey extends Component {
     });
 
     SurveyLib.Run.init(
-      survey,
+      survey.Questions,
       resultSetName,
       parseInt(runCount),
       (questionScene) => {
         this.setState({ currentQuestionScene: questionScene });
       },
-      (resultSetName, surveyId, surveyResults) => {
+      (resultSetName, surveyResults) => {
+        console.log(survey);
         const params = {
           resultSetName: resultSetName,
-          surveyId: surveyId,
+          surveyId: survey.Id,
+          surveyTitle: survey.Title,
           surveyResults: surveyResults
         };
         SurveyRestAPI.saveSurveyResponse(params);
