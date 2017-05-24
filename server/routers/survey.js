@@ -3,7 +3,6 @@
 const express = require('express');
 const DynamoDB = require('aws-sdk/clients/dynamodb');
 const uuidV4 = require('uuid/v4');
-var bodyParser = require('body-parser');
 
 
 const router = express.Router();
@@ -12,14 +11,6 @@ const docClient = new DynamoDB.DocumentClient({
     TableName: 'Survey'
   }
 });
-
-router.use(function timeLog (request, response, next) {
-  console.log('Time: ', Date.now())
-  next()
-});
-
-router.use(bodyParser.json());
-//router.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 router.get('/:creator/:filter', function (request, response) {
   const creator = request.params.creator;
