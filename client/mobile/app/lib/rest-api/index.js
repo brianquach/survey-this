@@ -1,5 +1,5 @@
-import { SurveyAPI } from './survey-api.js';
-import { ResultsAPI } from './results-api.js';
+import { SurveyAPI } from './survey-api';
+import { ResultsAPI } from './results-api';
 
 
 exports.SurveyRestAPI = Object.assign({}, SurveyAPI, ResultsAPI);
