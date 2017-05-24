@@ -34,7 +34,7 @@ router.get('/:surveyId', function (request, response) {
     if (err) {
       console.log(err, err.stack);
     } else {
-      response.send(data.Items[0]);
+      response.send(data);
     }
   });
 });

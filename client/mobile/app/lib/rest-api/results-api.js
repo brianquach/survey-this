@@ -42,7 +42,7 @@ const getSurveyResponse = (params, callback) => {
   })
   .then((resp) => resp.json())
   .then((respJSON) => {
-    callback(respJSON);
+    callback(respJSON.Items);
   })
   .catch((err) => {
     console.error(err);
