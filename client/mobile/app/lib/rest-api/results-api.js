@@ -3,6 +3,7 @@ const noop = () => {};
 const saveSurveyResponse = (params, callback) => {
   const resultSetName = params.resultSetName || '';
   const surveyId = params.surveyId || '';
+  const surveyTitle = params.surveyTitle || '';
   const surveyResults = params.surveyResults || {};
   const url = 'http://localhost:3000/results';
   callback = callback || noop;
@@ -16,6 +17,7 @@ const saveSurveyResponse = (params, callback) => {
     body: JSON.stringify({
       resultSetName: resultSetName,
       surveyId: surveyId,
+      surveyTitle: surveyTitle,
       surveyResults: surveyResults
     })
   })

@@ -34,10 +34,12 @@ router.post('/', function (request, response) {
   const surveyResults = request.body.surveyResults;
   const surveyId = request.body.surveyId;
   const resultSetName = request.body.resultSetName;
+  const surveyTitle = request.body.surveyTitle;
 
   let params = {
     Item: {
       "SurveyId": surveyId,
+      "SurveyTitle": surveyTitle,
       "Results": surveyResults,
       "ResultSetName": resultSetName
     }
