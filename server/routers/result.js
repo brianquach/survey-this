@@ -7,7 +7,7 @@ const DynamoDB = require('aws-sdk/clients/dynamodb');
 const router = express.Router();
 const docClient = new DynamoDB.DocumentClient({
   params: {
-    TableName: 'SurveyResults'
+    TableName: 'SurveyResult'
   }
 });
 
@@ -31,6 +31,7 @@ router.get('/:surveyId', function (request, response) {
 });
 
 router.post('/', function (request, response) {
+  const creator = request.body.creator;
   const surveyResults = request.body.surveyResults;
   const surveyId = request.body.surveyId;
   const resultSetName = request.body.resultSetName;
@@ -38,6 +39,7 @@ router.post('/', function (request, response) {
 
   let params = {
     Item: {
+      "Creator": creator,
       "SurveyId": surveyId,
       "SurveyTitle": surveyTitle,
       "Results": surveyResults,

@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const config = require('./config/configuration');
 const user = require('./routers/user');
 const survey = require('./routers/survey');
-const results = require('./routers/results');
+const results = require('./routers/result');
 
 
 const app = module.exports = express();

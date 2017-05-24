@@ -83,6 +83,7 @@ class RunSurvey extends Component {
 
   runSurvey(resultSetName, runCount) {
     const survey = this.state.selectedSurvey;
+    const email = this.props.email;
 
     this.setState({
       isRunning: true
@@ -96,8 +97,8 @@ class RunSurvey extends Component {
         this.setState({ currentQuestionScene: questionScene });
       },
       (resultSetName, surveyResults) => {
-        console.log(survey);
         const params = {
+          creator: email,
           resultSetName: resultSetName,
           surveyId: survey.Id,
           surveyTitle: survey.Title,

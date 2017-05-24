@@ -1,6 +1,7 @@
 const noop = () => {};
 
 const saveSurveyResponse = (params, callback) => {
+  const creator = params.creator || '';
   const resultSetName = params.resultSetName || '';
   const surveyId = params.surveyId || '';
   const surveyTitle = params.surveyTitle || '';
@@ -15,6 +16,7 @@ const saveSurveyResponse = (params, callback) => {
       "Content-Type": 'application/json',
     },
     body: JSON.stringify({
+      creator,
       resultSetName,
       surveyId,
       surveyTitle,
