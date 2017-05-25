@@ -7,6 +7,7 @@ import {
   Text,
   View
 } from 'react-native';
+import { SurveyRestAPI } from '../../../../lib/rest-api';
 
 
 class Results extends Component {
@@ -14,7 +15,9 @@ class Results extends Component {
     super(props);
 
     this.state = {
-      questions: this.props.surveyQuestions
+      questions: this.props.surveyQuestions,
+      data: this.props.results,
+      dataSetName: this.props.resultSetName
     };
   }
 
@@ -24,10 +27,18 @@ class Results extends Component {
       closeResults,
     } = this.props;
     const headingMsg = `Results for ${surveyTitle}:`;
+    const dataSetName = this.state.dataSetName;
+    const data = this.state.data;
 
     return (
       <View>
+        <Text>{ dataSetName }</Text>
         <Text>{ headingMsg }</Text>
+        <FlatList
+          data={ data }
+          renderItem={ ({item}) => this.resultRenderItem(item) }
+          keyExtractor={ (item, index) => index }
+        />
         <Button
           onPress={ closeResults }
           title="Back"
@@ -36,6 +47,19 @@ class Results extends Component {
         />
       </View>
     );
+  }
+
+  resultRenderItem(result) {
+    const total = result.Yes + result.No;
+    const yesResult = `Yes: ${result.Yes / total * 100}%`;
+    const noResult = `No: ${result.No / total * 100}%`;
+    return (
+      <View>
+        <Text>{ result.question }</Text>
+        <Text>{ yesResult }</Text>
+        <Text>{ noResult }</Text>
+      </View>
+    )
   }
 }
 

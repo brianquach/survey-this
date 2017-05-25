@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import {
-  FlatList,
+  SectionList,
   Text,
   TouchableHighlight,
   View
@@ -17,9 +17,9 @@ class SurveyAnalytics extends Component {
     super();
 
     this.state = {
-      surveys: [],
+      results: [],
       showResults: false,
-      selectedSurvey: {}
+      selectedResultSet: {}
     }
 
     this.closeResults = this.closeResults.bind(this);
@@ -27,37 +27,59 @@ class SurveyAnalytics extends Component {
 
   componentWillMount() {
     const params = {
-      email: this.props.email
+      creator: this.props.email
     };
-    SurveyRestAPI.getSurveys(params, (surveys) => {
-      this.setState({ surveys });
+    SurveyRestAPI.getSurveyResults(params, (results) => {
+      this.setState({ results });
     });
   }
 
   render() {
-    const surveys = this.state.surveys;
     const showResults = this.state.showResults;
-    const selectedSurvey = this.state.selectedSurvey;
+    const selectedResultSet = this.state.selectedResultSet;
+
+    const resultGroup = {};
+    this.state.results.map((result, index) => {
+      if (!resultGroup.hasOwnProperty(result.SurveyTitle)) {
+        resultGroup[result.SurveyTitle] = [];
+      }
+      resultGroup[result.SurveyTitle].push({
+        resultSetName: result.ResultSetName,
+        results: result.Results,
+        surveyTitle: result.SurveyTitle,
+        key: index
+      });
+    });
+    const data = [];
+    for (const r in resultGroup) {
+      if (resultGroup.hasOwnProperty(r)) {
+        data.push({
+          data: resultGroup[r],
+          key: r
+        })
+      }
+    }
 
     return (
       <View>
       {!showResults ? (
         <View>
-          <Text>Select survey to see results:</Text>
-          <FlatList
-            data={ surveys }
+          <Text>Select result data set:</Text>
+          <SectionList
             renderItem={ ({item}) =>
               <TouchableHighlight onPress={ () => this.displaySurveyResults(item) }>
-                <Text>{ item.Title }</Text>
+                <Text>{ item.resultSetName }</Text>
               </TouchableHighlight>
             }
-            keyExtractor={ (item, index) => index }
+            renderSectionHeader={ ({section}) => <Text>{ section.key }</Text> }
+            sections={ data }
           />
         </View>
       ) : (
         <Results
-          surveyTitle={ selectedSurvey.Title }
-          surveyQuestions={ selectedSurvey.Questions }
+          surveyTitle={ selectedResultSet.surveyTitle }
+          results={ selectedResultSet.results }
+          resultSetName={ selectedResultSet.Title }
           closeResults={ this.closeResults }
         />
       )}
@@ -65,9 +87,9 @@ class SurveyAnalytics extends Component {
     );
   }
 
-  displaySurveyResults(selectedSurvey) {
+  displaySurveyResults(selectedResultSet) {
     this.setState({
-      selectedSurvey,
+      selectedResultSet,
       showResults: true
     });
   }
