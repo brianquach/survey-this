@@ -60,9 +60,13 @@ module.exports.SurveyRun = (() => {
       this.renderer = renderer;
       this.onFinish = onFinish;
       this.surveyResponseRecorder = surveyResponseRecorder;
-      this.renderNextQuestion = this.renderNextQuestion.bind(this);
 
+      this.renderNextQuestion = this.renderNextQuestion.bind(this);
+      this.convertResultsObjToArray = this.convertResultsObjToArray.bind(this);
+
+      this.questions = {};  // Map question id to question
       questions.forEach((question) => {
+        this.questions[question.Id] = question.Question;
         this.scenes.push(
           <QuestionScene
             id={ question.Id }
@@ -96,12 +100,28 @@ module.exports.SurveyRun = (() => {
         if (this.runCount > 0) {
           this.restart();
         } else {
+          const results = this.convertResultsObjToArray(this.surveyResponseRecorder.results);
           this.onFinish(
             this.surveyResponseRecorder.resultSetName,
-            this.surveyResponseRecorder.results
+            results
           );
         }
       }
+    }
+
+    convertResultsObjToArray(results) {
+      const resultArr = [];
+
+      for (const questionId in results) {
+        if (results.hasOwnProperty(questionId)) {
+          resultArr.push({
+            ...results[questionId],
+            question: this.questions[questionId]
+          });
+        }
+      }
+
+      return resultArr;
     }
   }
 
