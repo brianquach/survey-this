@@ -54,6 +54,6 @@ const getSurveyResults = (params, callback) => {
 };
 
 exports.ResultsAPI = {
-  saveSurveyResponse: saveSurveyResponse,
-  getSurveyResults: getSurveyResults
+  saveSurveyResponse,
+  getSurveyResults
 };

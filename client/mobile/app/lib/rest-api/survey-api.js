@@ -51,6 +51,6 @@ const createSurvey = (params, callback) => {
 };
 
 exports.SurveyAPI = {
-  getSurveys: getSurveys,
-  createSurvey: createSurvey
+  getSurveys,
+  createSurvey
 };
