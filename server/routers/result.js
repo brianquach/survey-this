@@ -11,13 +11,13 @@ const docClient = new DynamoDB.DocumentClient({
   }
 });
 
-router.get('/:surveyId', function (request, response) {
-  const surveyId = request.params.surveyId;
+router.get('/:creator', function (request, response) {
+  const creator = request.params.creator;
 
   let params = {
-    KeyConditionExpression: 'SurveyId = :v0',
+    KeyConditionExpression: 'Creator = :v0',
     ExpressionAttributeValues: {
-        ":v0": surveyId,
+        ":v0": creator,
     }
   };
 

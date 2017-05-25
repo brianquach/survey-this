@@ -32,9 +32,9 @@ const saveSurveyResponse = (params, callback) => {
   });
 };
 
-const getSurveyResponse = (params, callback) => {
-  const surveyId = params.surveyId || '';
-  const url = `http://localhost:3000/results/${surveyId}`;
+const getSurveyResults = (params, callback) => {
+  const creator = params.creator || '';
+  const url = `http://localhost:3000/results/${creator}`;
   callback = callback || noop;
 
   fetch(url, {
@@ -55,5 +55,5 @@ const getSurveyResponse = (params, callback) => {
 
 exports.ResultsAPI = {
   saveSurveyResponse: saveSurveyResponse,
-  getSurveyResponse: getSurveyResponse
+  getSurveyResults: getSurveyResults
 };
