@@ -60,3 +60,8 @@ googleservice-info.plist
 
 # Vagrant
 .vagrant
+
+# Packer
+packer_cache
+*.iso
+*.box
