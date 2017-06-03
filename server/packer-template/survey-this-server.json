@@ -10,7 +10,6 @@
     "iso_checksum_type": "sha256",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
-    "ssh_wait_timeout": "10000s",
     "headless": true,
     "disk_size": 20000,
     "guest_os_type": "Ubuntu_64",
@@ -71,7 +70,7 @@
     [{
       "type": "vagrant",
       "compression_level": "9",
-      "output": "build/surveythis-{{ user `PACKER_BOX_NAME` }}.box"
+      "output": "artifacts/surveythis-{{ user `PACKER_BOX_NAME` }}.box"
     }, {
       "type": "shell-local",
       "scripts": "scripts/post-setup.sh"
